@@ -1,0 +1,46 @@
+<div class="container p-3 col-md-12">
+  <div class="row m-0 p-2 col-md-12">
+    <div class="col-md-6 p-1 d-inline-block">
+      <div class="col-md-12">
+        <div class="mt-5 mb-5 pt-1 pb-1 col-md-12"></div>
+        <div class="col-md-12 row m-0 justify-content-center">
+          <img src="../../assets/img/logo.png" class="col-md-6 h-25 d-inline-block vertical-align-middle" />
+          <div class="col-md-6 d-inline-block text-secondary vertical-align-middle">
+            <h3>MANAGEMENT</h3>
+            <h3>AUDITING</h3>
+            <h3>PROJECTION</h3>
+            <h3>SCALABLE</h3>
+            <h3>SMART</h3>
+            <h3>On-the CLOUD</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 p-1 d-inline-block">
+      <div class="mt-3 mb-3 pt-1 pb-1 col-md-12"></div>
+      <div class="col-md-6 d-block mx-auto card rounded h-100">
+        <h3 class="text-center pt-3 pb-3 mt-1 mb-1">
+          Admin Login
+        </h3>
+        <form [formGroup]="loginForm" p-2 (input)="closeMatSnackBar()">
+          <mat-form-field class="col-md-12">
+            <input matInput placeholder="Username" id="username" name="username" formControlName="username" autocomplete="off" autofocus />
+          </mat-form-field>
+          <mat-form-field class="col-md-12">
+            <input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" />
+          </mat-form-field>
+          <br>
+          <br>
+          <div class="col-md-12 p-2">
+            <button mat-raised-button color="accent" class="d-block mx-auto" (click)="logUserIn()">
+              <mat-icon>done</mat-icon>
+              <span>
+                Login
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

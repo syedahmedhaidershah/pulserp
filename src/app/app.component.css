@@ -1,0 +1,42 @@
+.header-logo{
+    height: 1rem!important;
+}
+.body-container{
+    height: calc(100% - 94px);
+}
+.sidenav-container{
+    height: calc( 100% - 64px);
+    top: 64px;
+    transition: left 300ms;
+    left: -100%;
+    z-index: 5;
+}
+.mat-side-nav-overlay {
+    opacity: 0;
+    display: none!important;
+    height: calc( 100% - 64px);
+    top: 64px;
+    left: 25%;
+    background-color: rgba(0, 0, 0, 0.425);
+    z-index: 5;
+    transition: opacity 1500ms;
+}
+.sidenav-container.active {
+    left: 0px!important;
+}
+.sidenav-container.active + .mat-side-nav-overlay {
+    display: block!important;
+    opacity: 1;
+}
+.sidenav-item {
+    color: #607d8b;
+    transition: color 300ms, background-color 300ms;
+}
+.sidenav-item:hover {
+    background-color: #27a9cf;
+    color: #fff;
+}
+.sidenav-item.active {
+    background-color: #607d8b;
+    color: #fff;
+}
