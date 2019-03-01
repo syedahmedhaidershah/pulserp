@@ -26,6 +26,7 @@ module.exports = {
         return ret;
     },
     generateSimpleQuery: (query, obj) => {
+        
         const params = [];
         let queryStr = '';
         for (p in obj) {
