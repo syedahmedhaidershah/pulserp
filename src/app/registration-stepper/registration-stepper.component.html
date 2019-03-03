@@ -1,7 +1,10 @@
 <mat-horizontal-stepper labelPosition="bottom" #stepper>
   <mat-step [stepControl]="yourInfoFormGroup">
     <form class="d-block mx-auto" [formGroup]="yourInfoFormGroup">
-      <ng-template matStepLabel>Your Information</ng-template>
+      <ng-template matStepLabel>
+        <div>Profile</div>
+        <small>Your Information</small>
+      </ng-template>
       <mat-form-field class="ml-5">
         <mat-icon class="position-absolute fc-icon">person</mat-icon>
         <input matInput placeholder="First name" formControlName="firstName" required>
@@ -32,10 +35,13 @@
   </mat-step>
   <mat-step [stepControl]="companyFormGroup" optional>
     <form class="d-block mx-auto" [formGroup]="companyFormGroup">
-      <ng-template matStepLabel>Company</ng-template>
+      <ng-template matStepLabel>
+        <div>Company</div>
+        <small>Your WorkPlace's profile</small>
+      </ng-template>
       <mat-form-field class="ml-5">
         <mat-icon class="position-absolute fc-icon">business</mat-icon>
-        <input matInput placeholder="Company Name" formControlName="name" required>
+        <input matInput placeholder="Company Name" formControlName="name" >
       </mat-form-field>
       <mat-form-field class="pl-3">
         <mat-select #posSelect placeholder="Your Position" (selectionChange)="selectPosition(posSelect)">
@@ -47,10 +53,10 @@
       <br>
       <mat-form-field class="ml-5">
         <mat-icon class="position-absolute fc-icon">group</mat-icon>
-        <input matInput placeholder="Number of Employees" formControlName="employeeCount" type="number" min="0" required>
+        <input matInput placeholder="Number of Employees" formControlName="employeeCount" type="number" min="0" >
       </mat-form-field>
       <mat-form-field *ngIf="showShareInp" class="pl-3">
-        <input matInput placeholder="Your Share" formControlName="yourShare" type="number" min="0" required>
+        <input matInput placeholder="Your Share" formControlName="yourShare" type="number" min="0" >
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -59,11 +65,14 @@
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <ng-template matStepLabel>
+      <div>Package</div>
+      <small>Subscription</small>
+    </ng-template>
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="registerMe()">Register</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

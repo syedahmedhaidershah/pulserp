@@ -48,7 +48,7 @@ export class RegistrationStepperComponent implements OnInit {
       phone: ['', Validators.required]
     });
     this.companyFormGroup = this.fb.group({
-      name: ['', Validators.required],
+      name: [''],
       employeeCount: [''],
       yourShare: ['']
     });
@@ -61,6 +61,10 @@ export class RegistrationStepperComponent implements OnInit {
     } else {
       this.showShareInp = false;
     }
+  }
+
+  registerMe() {
+    
   }
 
 }
