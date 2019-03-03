@@ -19,25 +19,42 @@
     <div class="col-md-6 p-1 d-inline-block">
       <div class="mt-3 mb-3 pt-1 pb-1 col-md-12"></div>
       <div class="col-md-6 d-block mx-auto card rounded h-100">
-        <h3 class="text-center pt-3 pb-3 mt-1 mb-1">
-          Admin Login
-        </h3>
+        <div class="text-center pt-3 pb-3 mt-1 mb-1">
+          <h3 class="m-0 p-0">
+            Login
+          </h3>
+          <small class="m-0 p-0">
+            Sign in to access your account
+          </small>
+          <br>
+        </div>
         <form [formGroup]="loginForm" p-2 (input)="closeMatSnackBar()">
           <mat-form-field class="col-md-12">
-            <input matInput placeholder="Username" id="username" name="username" formControlName="username" autocomplete="off" autofocus />
+            <input matInput placeholder="Username" id="username" name="username" formControlName="username"
+              autocomplete="off" autofocus />
           </mat-form-field>
           <mat-form-field class="col-md-12">
             <input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" />
           </mat-form-field>
           <br>
-          <br>
           <div class="col-md-12 p-2">
-            <button mat-raised-button color="accent" class="d-block mx-auto" (click)="logUserIn()">
+            <button mat-raised-button color="accent" class="d-block mx-auto d-block mx-auto col-md-12" (click)="logUserIn()">
               <mat-icon>done</mat-icon>
               <span>
                 Login
               </span>
             </button>
+          </div>
+          <br>
+          <br>
+          <div class="col-md-12 p-2">
+            <a class="text-decoration-none text-white" routerLink="register">
+              <button mat-raised-button color="primary" class="d-block mx-auto col-md-12">
+                <small>
+                  Don't have an account? Register now
+                </small>
+              </button>
+            </a>
           </div>
         </form>
       </div>

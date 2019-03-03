@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   loginForm: FormGroup;
   loginSub: Subscription;
 
-  constructor(private router: Router , private fb: FormBuilder, private matSnackBar: MatSnackBar, private login: LoginService) { }
+  constructor(private router: Router, private fb: FormBuilder, private matSnackBar: MatSnackBar, private login: LoginService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({

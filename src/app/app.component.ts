@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 // import { environment } from '../environments/environment';
 import * as $ from 'jquery';
+import { FunctionsService } from './functions.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,17 @@ import * as $ from 'jquery';
 })
 
 export class AppComponent implements OnInit {
+
+  staticLinks = [
+    {
+      path: 'about',
+      title: 'About'
+    },
+    {
+      path: '',
+      title: 'Home'
+    }
+  ];
 
   activeRoute = '';
   sideNavContainer = null;
@@ -27,17 +39,19 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private funct: FunctionsService) { }
 
   getComponentName(path: string) {
     const route = path.split('/')[1];
-    if (route === '') {
+    if (route !== 'dashboard') {
       $(document.getElementById('logout-button')).addClass('d-none');
+      $('.staticLinks').removeClass('d-none');
       return 'Home';
     } else {
       this.activeRoute = route;
       $('.sidenav-item').removeClass('active');
       $(document.getElementById(route)).addClass('active');
+      $('.staticLinks').addClass('d-none');
       $(document.getElementById('logout-button')).removeClass('d-none');
       return route;
     }

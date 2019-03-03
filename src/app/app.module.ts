@@ -16,10 +16,15 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { InterceptorService } from './interceptor.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LandingComponent } from './landing/landing.component';
+import { AboutComponent } from './about/about.component';
+import { RegisterComponent } from './register/register.component';
 
 const erpRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
@@ -27,7 +32,10 @@ const erpRoutes: Routes = [
     AppComponent,
     FooterComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    LandingComponent,
+    AboutComponent,
+    RegisterComponent
   ],
   imports: [
     HttpClientModule,
