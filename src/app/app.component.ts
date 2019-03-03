@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 // import { FunctionsService } from './functions.service';
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { MatSnackBar, MatSidenavContainer } from '@angular/material';
@@ -15,7 +15,7 @@ import { FunctionsService } from './functions.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   staticLinks = [
     {
@@ -75,7 +75,12 @@ export class AppComponent implements OnInit {
     this.setElements();
   }
 
+  ngAfterViewInit() {
+    $('body').addClass('active');
+  }
+
   setElements() {
+    $('body').addClass('backed');
     this.sideNavContainer = document.getElementById('sideNavContainer');
   }
 

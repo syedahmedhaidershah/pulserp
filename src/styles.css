@@ -19,7 +19,23 @@
     outline: none!important;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: proximaNova, Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0; font-family: proximaNova, Roboto, "Helvetica Neue", sans-serif;
+}
+
+body.backed {
+    background: url('./assets/img/homeBackMin.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+body.backed.active {
+    background: url('./assets/img/homeBack.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
 
 .vertical-align-middle {
     vertical-align: middle!important;

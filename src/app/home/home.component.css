@@ -1,0 +1,6 @@
+.loadingHomeProps {
+    color: #6c757d;
+}
+.loadingHomeProps.active {
+    color: #ffffff!important;
+}

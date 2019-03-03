@@ -26,6 +26,11 @@ export class HomeComponent implements OnInit {
         Validators.required
       ]],
     });
+    this.setElements();
+  }
+
+  setElements() {
+    $('h3.loadingHomeProps').addClass('active');
   }
 
   closeMatSnackBar() {

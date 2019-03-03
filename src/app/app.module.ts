@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // tslint:disable-next-line:max-line-length
 import { MatListModule, MatCheckboxModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
@@ -16,7 +17,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { InterceptorService } from './interceptor.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -33,7 +33,6 @@ const erpRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     DashboardComponent,
-    LandingComponent,
     AboutComponent,
     RegisterComponent
   ],
@@ -41,6 +40,7 @@ const erpRoutes: Routes = [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatStepperModule,
     MatListModule,
     MatSidenavModule,
     MatCheckboxModule,

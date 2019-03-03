@@ -10,9 +10,11 @@
             ULSERP
         </span>
         <div class="col-md-10 staticLinks">
-            <a *ngFor="let s of staticLinks" routerLink="{{s.path}}" class="text-decoration-none text-white float-right pl-2 pr-2">
-                {{s.title}}
-            </a>
+            <small>
+                <a *ngFor="let s of staticLinks" routerLink="{{s.path}}" class="text-decoration-none text-white float-right pl-2 pr-2">
+                    {{s.title}}
+                </a>
+            </small>
         </div>
         <span class="col-md-10 text-right">
             <button id="logout-button" mat-raised-button class="bg-white d-none" (click)="logout()">
