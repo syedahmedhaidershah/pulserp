@@ -4,3 +4,10 @@
 }
 .subPack-container {
 }
+.hov-dis-rad {
+    transition: border-radius 300ms, border-width 300ms;
+}
+.hov-dis-rad:hover {
+    border-radius: 0px!important;
+    border-width: 4px!important;
+}

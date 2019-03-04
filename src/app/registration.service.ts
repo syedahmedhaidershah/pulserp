@@ -19,6 +19,9 @@ export class RegistrationService {
       case 0:
         ret = 'Annual';
         break;
+      case 1:
+        ret = 'Quarterly';
+        break;
       default:
         ret = 'Annual';
         break;

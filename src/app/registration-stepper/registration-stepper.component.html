@@ -73,7 +73,7 @@
       <div *ngIf="subPacks.length === 0">
         Retreiving Subscription packages ...
       </div>
-      <div *ngFor="let p of subPacks" [style.height]="subPackHeight" class="ml-1 col-md-3 p-1 card rounded cursor-pointer" style.border="1px solid #{{p.color}}">
+      <div *ngFor="let p of subPacks" [style.height]="subPackHeight" class="ml-1 col-md-3 p-1 hov-dis-rad card rounded cursor-pointer" style.border="1px solid #{{p.color}}">
         <div class="subPack-container p-1">
           <h4 class="pl-2 pr-2 m-0" style.color="#{{p.color}}">
             {{ p.name }}
@@ -91,32 +91,46 @@
             </div>
           </div>
           <small>
-            <div>
+            <div *ngIf="p.description.hasOwnProperty('cloud')">
               <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.cloud">done</mat-icon>
               <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.cloud)">clear</mat-icon>
               <span class="vertical-align-middle">
                 Cloud Application / Resources
               </span>
             </div>
-            <div>
+            <div *ngIf="p.description.hasOwnProperty('acc')">
               <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.acc">done</mat-icon>
               <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.acc)">clear</mat-icon>
               <span class="vertical-align-middle">
                 Accounting & Finance
               </span>
             </div>
-            <div>
+            <div *ngIf="p.description.hasOwnProperty('management')">
               <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.management">done</mat-icon>
               <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.management)">clear</mat-icon>
               <span class="vertical-align-middle">
-                Management
+                Business Management
               </span>
             </div>
-            <div>
+            <div *ngIf="p.description.hasOwnProperty('storage')">
               <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.storage">done</mat-icon>
               <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.storage)">clear</mat-icon>
               <span class="vertical-align-middle">
                 File Storage
+              </span>
+            </div>
+            <div *ngIf="p.description.hasOwnProperty('inventory')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.inventory">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.inventory)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Inventory Management
+              </span>
+            </div>
+            <div *ngIf="p.description.hasOwnProperty('sales')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.sales">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.sales)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Sales' Records & Visualization
               </span>
             </div>
           </small>
