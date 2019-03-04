@@ -1,10 +1,8 @@
 // const mongoClient = require('mongodb').MongoClient;
-const defs = require('../../imports/defaults');
-const mysql = require('mysql');
-const dbConf = require('../../imports/config/db').mysqlconn;
 const md5 = require('md5');
 const loginInterface = require('../../imports/interfaces/login');
 const generalf = require('../../imports/functions/general.js');
+const defs = require('../../imports/defaults');
 const queries = require('../../imports/queries.js');
 
 const loginDefErr = 'Could not log you in at the moment. Please try again in a while';
@@ -12,17 +10,13 @@ const invalidLoginfErr = 'The credentials provided are incorrect';
 
 // let db = null;
 
-module.exports = (router) => {
+module.exports = (router, mysqlObject) => {
 
     // mongoClient.connect(dbConf.url, { useNewUrlParser: true }, (err, dbObj) => {
     //     if (err) return console.log(err);
 
     //     db = dbObj.db('pulserp');
     // });
-
-    const mysqlObject = mysql.createConnection(dbConf);
-
-    mysqlObject.connect();
 
     router.post('/login', (req, res) => {
         if (!(generalf.matchReqInt(req.body, loginInterface))) {

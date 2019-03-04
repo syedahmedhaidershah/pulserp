@@ -3,6 +3,12 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const fs = require('fs');
+const defs = require('./imports/defaults');
+const mysql = require('mysql');
+const dbConf = require('./imports/config/db').mysqlconn;
+
+const mysqlObject = mysql.createConnection(dbConf);
+mysqlObject.connect();
 
 const jsonParser = bodyParser.json({ limit: 1024 * 1024 * 20, type: 'application/json' });
 const urlencodedParser = bodyParser.urlencoded({ extended: true, limit: 1024 * 1024 * 20, type: 'application/x-www-form-urlencoding' });
@@ -18,7 +24,7 @@ app.use('/api', router);
 fs.readdir('./routes', (err, files) => {
     
     files.forEach(i => {
-        require('./routes/'.concat(i))(router);
+        require('./routes/'.concat(i))(router, mysqlObject);
     });
     router.get('*', (req, res) => {
         res.send(defaultRes);
