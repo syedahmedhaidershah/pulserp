@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2019 at 02:57 AM
+-- Generation Time: Mar 04, 2019 at 09:14 PM
 -- Server version: 5.7.22-log
 -- PHP Version: 7.2.5
 
@@ -54,9 +54,10 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`package_id`, `name`, `color`, `price`, `description`, `method`) VALUES
-(1, 'ERP Plus', '0089cf', 129.99, '{\"data\":[{\"cloud\":true},{\"acc\":true},{\"management\":true},{\"storage\":false}]}', 0),
-(2, 'Accountant PRO', 'd6960b', 179.99, '{\"data\":[{\"cloud\":true},{\"acc\":true},{\"management\":true},{\"storage\":true}]}', 0),
-(3, 'Inventora', '552387', 5.99, '{\"data\":[{\"cloud\":true},{\"inventory\":true},{\"sales\":true}]}', 1);
+(1, 'Inventora', '552387', 5.99, '{\"data\":[{\"cloud\":false},{\"inventory\":true},{\"sales\":true}]}', 1),
+(2, 'Inventora Plus', '008800', 39.99, '{\"data\":[{\"cloud\":true},{\"inventory\":true},{\"sales\":true}]}', 0),
+(3, 'Accountant PRO', '0089cf', 71.99, '{\"data\":[{\"cloud\":false},{\"acc\":true},{\"management\":true},{\"storage\":false}]}', 0),
+(4, 'ERP Plus', 'd6960b', 129.99, '{\"data\":[{\"cloud\":true},{\"acc\":true},{\"management\":true},{\"storage\":true}]}', 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
