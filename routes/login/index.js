@@ -3,7 +3,7 @@ const md5 = require('md5');
 const loginInterface = require('../../imports/interfaces/login');
 const generalf = require('../../imports/functions/general.js');
 const defs = require('../../imports/defaults');
-const queries = require('../../imports/queries.js');
+const loginQuery = require('../../imports/queries.js').login;
 
 const loginDefErr = 'Could not log you in at the moment. Please try again in a while';
 const invalidLoginfErr = 'The credentials provided are incorrect';
@@ -34,9 +34,9 @@ module.exports = (router, mysqlObject) => {
             // });
             const query = req.body;
             query.password = md5(query.password);
-            const loginQuery = generalf.generateSimpleQuery(queries.login, query);
+            const loginGeneratedQuery = generalf.generateSimpleQuery(loginQuery, query);
             mysqlObject.query(
-                loginQuery
+                loginGeneratedQuery
                 , (error, results, fields) => {
                     if (error) {
                         console.log(error);
