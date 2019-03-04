@@ -108,6 +108,10 @@ export class RegistrationStepperComponent implements OnInit {
       this.matSnackBar.open('Please select a package', 'close');
       return false;
     }
+    if (!(this.yourInfoFormGroup.valid) || !(this.yourInfoFormGroup.valid)) {
+      this.matSnackBar.open('Please input all of the fields', 'close');
+      return false;
+    }
     const userForm = this.yourInfoFormGroup.value;
     const companyForm = this.companyFormGroup.value;
     companyForm.yourPosition = this.selectedPosition;
