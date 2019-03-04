@@ -16,6 +16,8 @@ export class RegistrationStepperComponent implements OnInit {
   yourInfoFormGroup: FormGroup;
   companyFormGroup: FormGroup;
 
+  myColor = 'rgba(0,0,0,0.05)';
+
   showShareInp = false;
   selectedPosition = '';
 

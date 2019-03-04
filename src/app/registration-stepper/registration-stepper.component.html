@@ -73,7 +73,7 @@
       <div *ngIf="subPacks.length === 0">
         Retreiving Subscription packages ...
       </div>
-      <div *ngFor="let p of subPacks" [style.height]="subPackHeight" class="ml-1 col-md-3 p-1 hov-dis-rad card rounded cursor-pointer" style.border="1px solid #{{p.color}}">
+      <div matRipple [matRippleColor]="myColor" *ngFor="let p of subPacks" [style.height]="subPackHeight" class="ml-1 col-md-3 p-1 hov-dis-rad card rounded cursor-pointer" style.border="1px solid #{{p.color}}">
         <div class="subPack-container p-1">
           <h4 class="pl-2 pr-2 m-0" style.color="#{{p.color}}">
             {{ p.name }}

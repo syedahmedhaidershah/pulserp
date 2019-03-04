@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 // tslint:disable-next-line:max-line-length
-import { MatListModule, MatCheckboxModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatSelectModule, MatGridListModule } from '@angular/material';
+import { MatListModule, MatCheckboxModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatSelectModule, MatGridListModule, MatRippleModule } from '@angular/material';
 import { MatStepperModule } from '@angular/material/stepper';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -48,6 +48,7 @@ const erpRoutes: Routes = [
     MatCheckboxModule,
     MatSelectModule,
     MatGridListModule,
+    MatRippleModule,
     MatToolbarModule,
     MatInputModule,
     MatFormFieldModule,
