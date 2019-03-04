@@ -5,9 +5,11 @@
 .subPack-container {
 }
 .hov-dis-rad {
-    transition: border-radius 300ms, border-width 300ms;
+    transition: border-radius 300ms
 }
 .hov-dis-rad:hover {
     border-radius: 0px!important;
-    border-width: 2px!important;
+}
+.packContainer {
+    max-height: 1.5rem;
 }

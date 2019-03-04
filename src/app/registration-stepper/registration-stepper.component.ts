@@ -20,6 +20,7 @@ export class RegistrationStepperComponent implements OnInit {
 
   showShareInp = false;
   selectedPosition = '';
+  selectedPackage = null;
 
   subPackHeight = '0px';
 
@@ -103,7 +104,33 @@ export class RegistrationStepperComponent implements OnInit {
   }
 
   registerMe() {
+    if (this.selectedPackage === null) {
+      this.matSnackBar.open('Please select a package', 'close');
+      return false;
+    }
+    const userForm = this.yourInfoFormGroup.value;
+    const companyForm = this.companyFormGroup.value;
+    companyForm.yourPosition = this.selectedPosition;
+    const request = {
+      user: userForm,
+      company: companyForm,
+      package: this.selectedPackage.package_id
+    };
+    console.log(request);
+  }
 
+  dismissSnackbar() {
+    this.matSnackBar.dismiss();
+  }
+
+  selectPackage(packid) {
+    this.dismissSnackbar();
+    const id = packid.replace('package_', '');
+    this.selectedPackage = this.subPacks.filter(p => {
+      if (p.package_id === parseInt(id, 10)) {
+        return p;
+      }
+    })[0];
   }
 
 }

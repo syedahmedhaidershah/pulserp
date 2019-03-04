@@ -1,6 +1,6 @@
 <mat-horizontal-stepper labelPosition="bottom" #stepper>
   <mat-step [stepControl]="yourInfoFormGroup">
-    <form class="d-block mx-auto" [formGroup]="yourInfoFormGroup">
+    <form class="d-block mx-auto" [formGroup]="yourInfoFormGroup" (input)="dismissSnackbar()">
       <ng-template matStepLabel>
         <div>Profile</div>
         <small>Your Information</small>
@@ -34,7 +34,7 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="companyFormGroup" optional>
-    <form class="d-block mx-auto" [formGroup]="companyFormGroup">
+    <form class="d-block mx-auto" [formGroup]="companyFormGroup" (input)="dismissSnackbar()">
       <ng-template matStepLabel>
         <div>Company</div>
         <small>Your WorkPlace's profile</small>
@@ -69,26 +69,97 @@
       <div>Package</div>
       <small>Subscription</small>
     </ng-template>
-    <div class="container horizontal-scroll row m-0">
+    <div *ngIf="selectedPackage" class="container horizontal-scroll row m-0">
+      <div class="col-md-3 p-1">
+        <div [style.height]="subPackHeight" #package_{{selectedPackage.package_id}} class="subPack-container p-1 hov-dis-rad card rounded" style.border="1px solid #{{selectedPackage.color}}">
+          <h4 class="pl-2 m-0" style.color="#{{selectedPackage.color}}">
+            {{ selectedPackage.name }}
+            <button class="float-right bg-white shadow-none border-0 bg-transparent cursor-pointer" (click)="selectedPackage=null">
+              <mat-icon class="vertical-align-middle">
+                clear
+              </mat-icon>
+            </button>
+          </h4>
+          <div class="packContainer row col-md-12 p-0 m-0">
+            <span style.color="#{{selectedPackage.color}}" class="col-md-6 p-0 text-left">
+              <small>
+                {{this.registration.getType(selectedPackage.method)}}
+              </small>
+            </span>
+            <span style.color="#{{selectedPackage.color}}" class="col-md-6 p-0 text-right">
+              <small>
+                <b>$</b> {{selectedPackage.price}}
+              </small>
+            </span>
+          </div>
+          <small>
+            <div *ngIf="selectedPackage.description.hasOwnProperty('cloud')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="selectedPackage.description.cloud">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(selectedPackage.description.cloud)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Cloud Application / Resources
+              </span>
+            </div>
+            <div *ngIf="selectedPackage.description.hasOwnProperty('acc')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="selectedPackage.description.acc">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(selectedPackage.description.acc)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Accounting & Finance
+              </span>
+            </div>
+            <div *ngIf="selectedPackage.description.hasOwnProperty('management')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="selectedPackage.description.management">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(selectedPackage.description.management)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Business Management
+              </span>
+            </div>
+            <div *ngIf="selectedPackage.description.hasOwnProperty('storage')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="selectedPackage.description.storage">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(selectedPackage.description.storage)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                File Storage
+              </span>
+            </div>
+            <div *ngIf="selectedPackage.description.hasOwnProperty('inventory')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="selectedPackage.description.inventory">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(selectedPackage.description.inventory)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Inventory Management
+              </span>
+            </div>
+            <div *ngIf="selectedPackage.description.hasOwnProperty('sales')">
+              <mat-icon class="text-success vertical-align-middle" *ngIf="selectedPackage.description.sales">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(selectedPackage.description.sales)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Sales' Records & Visualization
+              </span>
+            </div>
+          </small>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!selectedPackage" class="container horizontal-scroll row m-0">
       <div *ngIf="subPacks.length === 0">
         Retreiving Subscription packages ...
       </div>
-      <div matRipple [matRippleColor]="myColor" *ngFor="let p of subPacks" [style.height]="subPackHeight" class="ml-1 col-md-3 p-1 hov-dis-rad card rounded cursor-pointer" style.border="1px solid #{{p.color}}">
-        <div class="subPack-container p-1">
+      <div *ngFor="let p of subPacks" class="col-md-3 p-1">
+        <div matRipple [style.height]="subPackHeight" #package_{{p.package_id}} (click)="selectPackage('package_'.concat(p.package_id))"
+          [matRippleColor]="myColor" class="subPack-container p-1 hov-dis-rad card rounded cursor-pointer" style.border="1px solid #{{p.color}}">
           <h4 class="pl-2 pr-2 m-0" style.color="#{{p.color}}">
             {{ p.name }}
           </h4>
-          <div class="row col-md-12 p-0 m-0">
-            <div style.color="#{{p.color}}" class="col-md-6 p-0 text-left">
+          <div class="packContainer row col-md-12 p-0 m-0">
+            <span style.color="#{{p.color}}" class="col-md-6 p-0 text-left">
               <small>
                 {{this.registration.getType(p.method)}}
               </small>
-            </div>
-            <div style.color="#{{p.color}}" class="col-md-6 p-0 text-right">
+            </span>
+            <span style.color="#{{p.color}}" class="col-md-6 p-0 text-right">
               <small>
                 <b>$</b> {{p.price}}
               </small>
-            </div>
+            </span>
           </div>
           <small>
             <div *ngIf="p.description.hasOwnProperty('cloud')">
