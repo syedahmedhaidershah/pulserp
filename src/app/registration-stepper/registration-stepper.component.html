@@ -41,7 +41,7 @@
       </ng-template>
       <mat-form-field class="ml-5">
         <mat-icon class="position-absolute fc-icon">business</mat-icon>
-        <input matInput placeholder="Company Name" formControlName="name" >
+        <input matInput placeholder="Company Name" formControlName="name">
       </mat-form-field>
       <mat-form-field class="pl-3">
         <mat-select #posSelect placeholder="Your Position" (selectionChange)="selectPosition(posSelect)">
@@ -53,10 +53,10 @@
       <br>
       <mat-form-field class="ml-5">
         <mat-icon class="position-absolute fc-icon">group</mat-icon>
-        <input matInput placeholder="Number of Employees" formControlName="employeeCount" type="number" min="0" >
+        <input matInput placeholder="Number of Employees" formControlName="employeeCount" type="number" min="0">
       </mat-form-field>
       <mat-form-field *ngIf="showShareInp" class="pl-3">
-        <input matInput placeholder="Your Share" formControlName="yourShare" type="number" min="0" >
+        <input matInput placeholder="Your Share" formControlName="yourShare" type="number" min="0">
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -73,9 +73,53 @@
       <div *ngIf="subPacks.length === 0">
         Retreiving Subscription packages ...
       </div>
-      <div *ngFor="let p of subPacks" [style.height]="subPackHeight" class="col-md-3 p-1 card rounded">
+      <div *ngFor="let p of subPacks" [style.height]="subPackHeight" class="ml-1 col-md-3 p-1 card rounded cursor-pointer" style.border="1px solid #{{p.color}}">
         <div class="subPack-container p-1">
-          {{ p.description }}
+          <h4 class="pl-2 pr-2 m-0" style.color="#{{p.color}}">
+            {{ p.name }}
+          </h4>
+          <div class="row col-md-12 p-0 m-0">
+            <div style.color="#{{p.color}}" class="col-md-6 p-0 text-left">
+              <small>
+                {{this.registration.getType(p.method)}}
+              </small>
+            </div>
+            <div style.color="#{{p.color}}" class="col-md-6 p-0 text-right">
+              <small>
+                <b>$</b> {{p.price}}
+              </small>
+            </div>
+          </div>
+          <small>
+            <div>
+              <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.cloud">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.cloud)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Cloud Application / Resources
+              </span>
+            </div>
+            <div>
+              <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.acc">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.acc)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Accounting & Finance
+              </span>
+            </div>
+            <div>
+              <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.management">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.management)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                Management
+              </span>
+            </div>
+            <div>
+              <mat-icon class="text-success vertical-align-middle" *ngIf="p.description.storage">done</mat-icon>
+              <mat-icon class="text-danger vertical-align-middle" *ngIf="!(p.description.storage)">clear</mat-icon>
+              <span class="vertical-align-middle">
+                File Storage
+              </span>
+            </div>
+          </small>
         </div>
       </div>
     </div>

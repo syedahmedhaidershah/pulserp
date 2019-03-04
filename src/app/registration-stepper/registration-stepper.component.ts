@@ -71,7 +71,17 @@ export class RegistrationStepperComponent implements OnInit {
       if (data.error) {
         this.matSnackBar.open(data.message, 'close');
       } else {
-        this.subPacks = data.message;
+        this.subPacks = data.message.map(p => {
+          const useData = JSON.parse(p.description).data;
+          p.description = {};
+          // tslint:disable-next-line:forin
+          useData.forEach((v: Object) => {
+            Object.keys(v).forEach(k => {
+              p.description[k] = v[k];
+            });
+          });
+          return p;
+        });
       }
       this.tempSub.unsubscribe();
     });

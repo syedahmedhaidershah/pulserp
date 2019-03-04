@@ -7,9 +7,22 @@ import { AnyRes } from './any-res';
 })
 export class RegistrationService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllPackages() {
     return this.http.post<AnyRes>('/get/packages/all', {});
+  }
+
+  getType(type) {
+    let ret = null;
+    switch (type) {
+      case 0:
+        ret = 'Annual';
+        break;
+      default:
+        ret = 'Annual';
+        break;
+    }
+    return ret;
   }
 }
