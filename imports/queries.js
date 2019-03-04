@@ -4,8 +4,6 @@ module.exports = {
         '" AND `password`="',
         '";'
     ],
-    getAllSubscriptionPackages: [
-        'SELECT * FROM `packages`'
-    ]
+    getAllSubscriptionPackages: 'SELECT * FROM `packages`'
 }
 // { username: a, password: b}
