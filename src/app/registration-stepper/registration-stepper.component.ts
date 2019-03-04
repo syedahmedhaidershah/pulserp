@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
 import { Subscription } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-registration-stepper',
@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material';
 })
 
 export class RegistrationStepperComponent implements OnInit {
+  @ViewChild('stepper') stepper: MatStepper;
+
   tempSub: Subscription;
 
   yourInfoFormGroup: FormGroup;
@@ -110,6 +112,7 @@ export class RegistrationStepperComponent implements OnInit {
     }
     if (!(this.yourInfoFormGroup.valid) || !(this.yourInfoFormGroup.valid)) {
       this.matSnackBar.open('Please input all of the fields', 'close');
+      this.stepper.previous(); this.stepper.previous();
       return false;
     }
     const userForm = this.yourInfoFormGroup.value;
