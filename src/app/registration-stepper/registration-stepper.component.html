@@ -69,7 +69,17 @@
       <div>Package</div>
       <small>Subscription</small>
     </ng-template>
-    You are now done.
+    <div class="container horizontal-scroll row m-0">
+      <div *ngIf="subPacks.length === 0">
+        Retreiving Subscription packages ...
+      </div>
+      <div *ngFor="let p of subPacks" [style.height]="subPackHeight" class="col-md-3 p-1 card rounded">
+        <div class="subPack-container p-1">
+          {{ p.description }}
+        </div>
+      </div>
+    </div>
+    <br>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="registerMe()">Register</button>

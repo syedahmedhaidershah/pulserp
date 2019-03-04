@@ -44,3 +44,7 @@ body.backed.active {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.horizontal-scroll {
+    overflow-x: auto!important;
+}

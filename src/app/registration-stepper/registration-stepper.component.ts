@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegistrationService } from '../registration.service';
+import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-registration-stepper',
@@ -8,11 +11,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class RegistrationStepperComponent implements OnInit {
+  tempSub: Subscription;
+
   yourInfoFormGroup: FormGroup;
   companyFormGroup: FormGroup;
 
   showShareInp = false;
   selectedPosition = '';
+
+  subPackHeight = '0px';
 
   companyPositions = [
     {
@@ -33,7 +40,10 @@ export class RegistrationStepperComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder) { }
+  subPacks = [
+  ];
+
+  constructor(private matSnackBar: MatSnackBar, private fb: FormBuilder, private registration: RegistrationService) { }
 
   ngOnInit() {
     this.yourInfoFormGroup = this.fb.group({
@@ -52,6 +62,23 @@ export class RegistrationStepperComponent implements OnInit {
       employeeCount: [''],
       yourShare: ['']
     });
+    this.setAttr();
+    this.getPackages();
+  }
+
+  getPackages() {
+    this.tempSub = this.registration.getAllPackages().subscribe(data => {
+      if (data.error) {
+        this.matSnackBar.open(data.message, 'close');
+      } else {
+        this.subPacks = data.message;
+      }
+      this.tempSub.unsubscribe();
+    });
+  }
+
+  setAttr() {
+    this.subPackHeight = (window.innerHeight / 4).toString().concat('px');
   }
 
   selectPosition(el) {
@@ -64,7 +91,7 @@ export class RegistrationStepperComponent implements OnInit {
   }
 
   registerMe() {
-    
+
   }
 
 }
