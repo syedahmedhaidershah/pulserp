@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2019 at 09:14 PM
+-- Generation Time: Mar 08, 2019 at 08:35 PM
 -- Server version: 5.7.22-log
 -- PHP Version: 7.2.5
 
@@ -33,6 +33,24 @@ CREATE TABLE `companies` (
   `company_name` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `information`
+--
+
+CREATE TABLE `information` (
+  `uid` int(11) NOT NULL,
+  `data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `information`
+--
+
+INSERT INTO `information` (`uid`, `data`) VALUES
+(19, '{\'name\':\'Pulsate Technologies\',\'employeeCount\':21,\'yourShare\':20,\'yourPosition\':\'own\'}');
 
 -- --------------------------------------------------------
 
@@ -88,19 +106,35 @@ CREATE TABLE `users` (
   `uid` int(11) NOT NULL,
   `username` varchar(24) NOT NULL,
   `password` varchar(48) NOT NULL,
-  `level` tinyint(4) NOT NULL DEFAULT '0'
+  `firstname` varchar(16) NOT NULL,
+  `lastname` varchar(16) NOT NULL,
+  `email` varchar(48) NOT NULL,
+  `phone` varchar(16) NOT NULL,
+  `package` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `username`, `password`, `level`) VALUES
-(1, 'sahs9996', 'b4af804009cb036a4ccdc33431ef9ac9', 0);
+INSERT INTO `users` (`uid`, `username`, `password`, `firstname`, `lastname`, `email`, `phone`, `package`) VALUES
+(19, 'sahs9996', 'b4af804009cb036a4ccdc33431ef9ac9', 'Ahmed', 'Haider', 'haidershah@pulsatechs.com', '03003573769', 2);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`company_id`);
+
+--
+-- Indexes for table `information`
+--
+ALTER TABLE `information`
+  ADD PRIMARY KEY (`uid`);
 
 --
 -- Indexes for table `packages`
@@ -119,6 +153,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `information`
+--
+ALTER TABLE `information`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
@@ -128,7 +174,17 @@ ALTER TABLE `packages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `information`
+--
+ALTER TABLE `information`
+  ADD CONSTRAINT `fk_uid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
