@@ -27,10 +27,10 @@ fs.readdir('./routes', (err, files) => {
         require('./routes/'.concat(i))(router, mysqlObject);
     });
     router.get('*', (req, res) => {
-        res.send(defaultRes);
+        res.send(defs.defRes);
     });
     router.post('*', (req, res) => {
-        res.send(defaultRes);
+        res.send(defs.defRes);
     });
     
     try {

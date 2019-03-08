@@ -4,7 +4,7 @@ module.exports = {
             return false;
         }
 
-        if (Object.keys(reqbody).sort().toString() != Object.keys(interface).sort().toString()) {
+        if (Object.keys(reqbody).sort().toString().toLowerCase() != Object.keys(interface).sort().toString().toLowerCase()) {
             return false;
         } else {
             return true;
