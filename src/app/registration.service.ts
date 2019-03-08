@@ -28,4 +28,8 @@ export class RegistrationService {
     }
     return ret;
   }
+
+  registerUser(data) {
+    return this.http.post<AnyRes>('/register/user', data);
+  }
 }

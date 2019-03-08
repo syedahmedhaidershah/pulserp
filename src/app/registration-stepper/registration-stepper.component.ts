@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
 import { Subscription } from 'rxjs';
 import { MatSnackBar, MatStepper } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-stepper',
@@ -48,7 +49,8 @@ export class RegistrationStepperComponent implements OnInit {
   subPacks = [
   ];
 
-  constructor(private matSnackBar: MatSnackBar, private fb: FormBuilder, private registration: RegistrationService) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private router: Router, private matSnackBar: MatSnackBar, private fb: FormBuilder, private registration: RegistrationService) { }
 
   ngOnInit() {
     this.yourInfoFormGroup = this.fb.group({
@@ -123,7 +125,13 @@ export class RegistrationStepperComponent implements OnInit {
       company: companyForm,
       package: this.selectedPackage.package_id
     };
-    console.log(request);
+
+    this.tempSub = this.registration.registerUser(request).subscribe((data) => {
+      this.matSnackBar.open(data.message, 'close');
+      if (!(data.error)) {
+        this.router.navigate(['']);
+      }
+    });
   }
 
   dismissSnackbar() {
