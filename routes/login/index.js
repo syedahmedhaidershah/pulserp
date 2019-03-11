@@ -36,7 +36,7 @@ module.exports = (router, mysqlObject) => {
                         }
                     });
             } else {
-                res.send(defs.setRetRes('err', registerDefErr));
+                res.send(defs.setRetRes('err', invalidLoginfErr));
             }
         }
     });
