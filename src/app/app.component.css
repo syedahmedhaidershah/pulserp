@@ -33,10 +33,14 @@
     transition: color 300ms, background-color 300ms;
 }
 .sidenav-item:hover {
-    background-color: #27a9cf;
+    background-color: #0f85a8;
     color: #fff;
 }
 .sidenav-item.active {
     background-color: #607d8b;
+    color: #fff;
+}
+.sidenav-item.active:hover {
+    background-color: #304d5b;
     color: #fff;
 }

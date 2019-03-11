@@ -48,3 +48,11 @@ body.backed.active {
 .horizontal-scroll {
     overflow-x: auto!important;
 }
+
+.vertical-scroll {
+    overflow-y: auto!important;
+}
+
+.bg-lgreen {
+    background-color: #5ca209;
+}

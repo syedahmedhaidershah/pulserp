@@ -20,12 +20,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { RegistrationStepperComponent } from './registration-stepper/registration-stepper.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AuthGuard } from './auth.guard';
+import { LoginService } from './login.service';
+import { SettingsComponent } from './settings/settings.component';
 
 const erpRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: '**', component: PagenotfoundComponent }
 ];
 
 @NgModule({
@@ -36,7 +42,9 @@ const erpRoutes: Routes = [
     DashboardComponent,
     AboutComponent,
     RegisterComponent,
-    RegistrationStepperComponent
+    RegistrationStepperComponent,
+    PagenotfoundComponent,
+    SettingsComponent
   ],
   imports: [
     HttpClientModule,
@@ -63,7 +71,9 @@ const erpRoutes: Routes = [
     )
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    LoginService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

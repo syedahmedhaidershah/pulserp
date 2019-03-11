@@ -35,7 +35,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     //   name: 'Home', path: ''
     // },
     {
-      name: 'Dashboard', path: 'dashboard'
+      name: 'Dashboard', path: 'dashboard', icon: 'dashboard'
+    },
+    {
+      name: 'Settings', path: 'settings', icon: 'settings'
     }
   ];
 
@@ -43,7 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   getComponentName(path: string) {
     const route = path.split('/')[1];
-    if (route !== 'dashboard') {
+    if (route === '') {
       $(document.getElementById('logout-button')).addClass('d-none');
       $('.staticLinks').removeClass('d-none');
       return 'Home';
@@ -100,5 +103,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   logout() {
     $(this.sideNavContainer).removeClass('active');
     this.router.navigate(['']);
+  }
+
+  navigateTo(path) {
+    this.router.navigate([path]);
+    this.dismissSideNav();
   }
 }
