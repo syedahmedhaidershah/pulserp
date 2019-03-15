@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2019 at 08:35 PM
+-- Generation Time: Mar 15, 2019 at 02:20 PM
 -- Server version: 5.7.22-log
 -- PHP Version: 7.2.5
 
@@ -51,6 +51,32 @@ CREATE TABLE `information` (
 
 INSERT INTO `information` (`uid`, `data`) VALUES
 (19, '{\'name\':\'Pulsate Technologies\',\'employeeCount\':21,\'yourShare\':20,\'yourPosition\':\'own\'}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `item_id` int(11) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `consumer` tinyint(1) NOT NULL DEFAULT '0',
+  `rental` tinyint(1) NOT NULL DEFAULT '0',
+  `cost` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `empty` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `name`, `consumer`, `rental`, `cost`, `quantity`, `empty`) VALUES
+(1, 'pepsi', 0, 1, 250, 25, 0),
+(2, 'pepsi', 0, 2, 250, 25, 0),
+(3, 'pepsi', 1, 0, 25, 25, 0),
+(4, 'pepsi', 1, 0, 25, 23, 2);
 
 -- --------------------------------------------------------
 
@@ -137,6 +163,12 @@ ALTER TABLE `information`
   ADD PRIMARY KEY (`uid`);
 
 --
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`item_id`);
+
+--
 -- Indexes for table `packages`
 --
 ALTER TABLE `packages`
@@ -163,6 +195,12 @@ ALTER TABLE `companies`
 --
 ALTER TABLE `information`
   MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `packages`
