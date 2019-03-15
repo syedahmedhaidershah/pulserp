@@ -21,6 +21,17 @@ module.exports = {
             ',"',
             '")'
         ]
+    },
+    inventory: {
+        addItem: [
+            'INSERT INTO `items` (`consumer`,`cost`,`empty`,`name`,`quantity`,`rental`) VALUES (',
+            ',',
+            ',',
+            ',"',
+            '",',
+            ',',
+            ')'
+        ]
     }
 }
 // { username: a, password: b}

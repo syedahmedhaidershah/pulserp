@@ -26,7 +26,7 @@ module.exports = {
         return ret;
     },
     generateSimpleQuery: (query, obj) => {
-        
+
         const params = [];
         let queryStr = '';
         for (p in obj) {
@@ -41,6 +41,20 @@ module.exports = {
             }
             queryStr += query[i];
             return queryStr;
+        }
+    },
+    sortJson: (jsonObj) => {
+        if (!(module.exports.isJson(jsonObj))) {
+            return null;
+        } else {
+            const toRet = {};
+            const keys = Object.keys(jsonObj).sort().map(k => {
+                return k.toLowerCase();
+            });
+            keys.forEach(k => {
+                toRet[k] = jsonObj[k];
+            });
+            return toRet;
         }
     }
 }

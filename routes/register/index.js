@@ -7,8 +7,8 @@ const registerationQueries = require('../../imports/queries.js').register;
 const registerUserQuery = registerationQueries.user;
 const registerInfoQuery = registerationQueries.information;
 
-const registerDefErr = 'Could not register you in at the moment. Please try again in a while';
-const invalidregisterfErr = 'The registeration data was incomplete. Contact support sevices';
+const registerDefErr = defs.errorMessages.register.registerDefErr;
+const invalidRegisterErr = defs.errorMessages.register.invalidRegisterErr;
 
 // let db = null;
 
