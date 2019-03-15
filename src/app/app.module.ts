@@ -71,6 +71,7 @@ const erpRoutes: Routes = [
     MatToolbarModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,

@@ -5,19 +5,46 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <div class="p-1 align-self-stretch row m-0 inv-section">
-    <div *ngFor="let i of inventoryStats" class="col-md-12 text-white align-self-stretch px-1 p-2 text-white cursor-pointer react-on-hover react-white">
+    <div *ngIf="inventoryStats.length === 0" class="text-white p-2">
+      Your inventory is currently empty
+    </div>
+    <div *ngFor="let i of inventoryStats" class="col-md-12 text-white align-self-stretch px-1 p-2 text-white cursor-pointer react-on-hover react-white inv-item mb-1">
       <div class="col-md-12 p-2">
-        <mat-icon class="ml-2 mr-3 vertical-align-middle">
-          {{i.icon}}
-        </mat-icon>
-        <span class="vertical-align-middle">
-          {{i.label}}
-        </span>
-        <span class="vertical-align-middle float-right">
-          <small class="fs-1_25">
-            {{i.remaining}}
+        <div class="col-md-12 m-0 p-0">
+          <mat-icon class="ml-2 mr-3 vertical-align-middle">
+            all_inbox
+          </mat-icon>
+          <span class="vertical-align-middle">
+            {{capitalizeOnGaps(i.name)}}
+          </span>
+          <span class="vertical-align-middle float-right">
+            <small class="fs-1_25">
+              {{i.quantity}}
+            </small>
+          </span>
+        </div>
+        <div class="py-1 px-3">
+          <small>
+            <div *ngIf="i.empty >= 0">
+              Empty: {{i.empty}}
+            </div>
+            <div>
+              Type:
+              <span *ngIf="i.consumer === 1">
+                Consumer Product
+              </span>
+              <span *ngIf="i.rental === 1">
+                Rental (Charged daily)
+              </span>
+              <span *ngIf="i.rental === 2">
+                Rental (Charged hourly)
+              </span>
+              <span *ngIf="i.rental === 3">
+                Rental (Charged monthly)
+              </span>
+            </div>
           </small>
-        </span>
+        </div>
       </div>
     </div>
   </div>

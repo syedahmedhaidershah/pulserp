@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSelectModule, MatSnackBar, MatSelect } from '@angular/material';
+import { MatSelectModule, MatSnackBar, MatSelect, MatCheckbox } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InventoryService } from '../inventory.service';
 import { Subscription } from 'rxjs';
@@ -13,10 +13,13 @@ export class InventoryComponent implements OnInit {
 
   @ViewChild('itemTypeSelect') itemTypeSelect: MatSelect;
 
+  @ViewChild('emptyCheck') matCheckBox: MatCheckbox;
+
   tempSub: Subscription;
 
   selectedItemType = 'c';
   rentDurationType = null;
+  hasEmpty = false;
 
   itemType = [
     { value: 'c', label: 'Consumer/Retail' },
@@ -35,6 +38,18 @@ export class InventoryComponent implements OnInit {
   ngOnInit() {
     this.setAttr();
     this.setForms();
+    this.setListeners();
+  }
+
+  setListeners() {
+    this.matCheckBox._onInputClick = (e) => {
+      if (!(this.hasEmpty)) {
+        this.matCheckBox.writeValue('checked');
+      } else {
+        this.matCheckBox.writeValue(undefined);
+      }
+      this.hasEmpty = this.matCheckBox.checked;
+    };
   }
 
   setForms() {
@@ -99,8 +114,12 @@ export class InventoryComponent implements OnInit {
       if (prevent) {
         this.matSnackBar.open('An unhandled error occured, please contact your administrator', 'close');
       } else {
+        if (!(this.hasEmpty)) {
+          forwardForm['empty'] = -1;
+        }
         this.tempSub = this.inventory.addItemToInventory(forwardForm).subscribe(data => {
           this.matSnackBar.open(data.message, 'close');
+          this.itemForm.reset();
           this.tempSub.unsubscribe();
         });
       }

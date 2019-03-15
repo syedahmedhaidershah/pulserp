@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AnyRes } from './any-res';
 
 @Injectable({
@@ -11,5 +11,9 @@ export class InventoryService {
 
   addItemToInventory(data) {
     return this.http.post<AnyRes>('/add/inventory/item', data);
+  }
+
+  getAllItems() {
+    return this.http.post<AnyRes>('/get/inventory/item/all', {});
   }
 }
