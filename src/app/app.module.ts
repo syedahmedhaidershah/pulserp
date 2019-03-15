@@ -24,6 +24,11 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AuthGuard } from './auth.guard';
 import { LoginService } from './login.service';
 import { SettingsComponent } from './settings/settings.component';
+import { SalesSectionComponent } from './sales-section/sales-section.component';
+import { InventorySectionComponent } from './inventory-section/inventory-section.component';
+import { SalesChartComponent } from './sales-chart/sales-chart.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { SalesComponent } from './sales/sales.component';
 
 const erpRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,6 +36,7 @@ const erpRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'inventory', component: InventoryComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -44,7 +50,12 @@ const erpRoutes: Routes = [
     RegisterComponent,
     RegistrationStepperComponent,
     PagenotfoundComponent,
-    SettingsComponent
+    SettingsComponent,
+    SalesSectionComponent,
+    InventorySectionComponent,
+    SalesChartComponent,
+    InventoryComponent,
+    SalesComponent
   ],
   imports: [
     HttpClientModule,

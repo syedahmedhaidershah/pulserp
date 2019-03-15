@@ -30,23 +30,24 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   activeRoute = '';
   sideNavContainer = null;
+  unactivated = [
+    '',
+    'register'
+  ];
   appRoutes = [
     // {
     //   name: 'Home', path: ''
     // },
-    {
-      name: 'Dashboard', path: 'dashboard', icon: 'dashboard'
-    },
-    {
-      name: 'Settings', path: 'settings', icon: 'settings'
-    }
+    { name: 'Dashboard', path: 'dashboard', icon: 'dashboard' },
+    { name: 'Inventory Management', path: 'inventory', icon: 'work' },
+    { name: 'Settings', path: 'settings', icon: 'settings' }
   ];
 
   constructor(private router: Router, private funct: FunctionsService) { }
 
   getComponentName(path: string) {
     const route = path.split('/')[1];
-    if (route === '') {
+    if (this.unactivated.includes(route)) {
       $(document.getElementById('logout-button')).addClass('d-none');
       $('.staticLinks').removeClass('d-none');
       return 'Home';

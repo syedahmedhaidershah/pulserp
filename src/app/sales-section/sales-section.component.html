@@ -1,0 +1,141 @@
+<div class="flex-fill bg-lgreen h-100 rounded overflow-hidden">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span class="text-uppercase">sales</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="p-0 align-self-stretch row m-0">
+    <div class="col-md-6 align-self-stretch p-1 text-white cursor-pointer react-on-hover">
+      <h6 class="p-2 col-md-12 text-uppercase m-0">
+        completed
+      </h6>
+      <div class="row d-flex m-0">
+        <div class="col-md-6 p-2 text-center">
+          <div class="col-md-12">
+            <small>Rs.</small>
+            <h3>
+              {{sales.completed.rentals}}
+            </h3>
+          </div>
+          <div class="col-md-12">Rentals
+          </div>
+        </div>
+        <div class="col-md-6 p-2 text-center">
+          <div class="col-md-12">
+            <small>Rs.</small>
+            <h3>
+              {{sales.completed.consumer}}
+            </h3>
+          </div>
+          <div class="col-md-12">Consumer
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-12 container p-0">
+        <div class="col-md-12 p-1 row m-0">
+          <div class="col-md-6 p-1 text-center">
+            <div class="col-md-12 d-block mx-auto">
+              <small>Rs.</small>
+              <h3>
+                {{sales.completed.salesMan}}
+              </h3>
+            </div>
+            <div class="justify-content-center col-md-12">
+              <mat-icon class="vertical-align-middle">
+                airport_shuttle
+              </mat-icon>
+            </div>
+          </div>
+          <div class="col-md-6 p-1 text-center">
+            <div class="col-md-12 d-block mx-auto">
+              <small>Rs.</small>
+              <h3>
+                {{sales.completed.walkIn}}
+              </h3>
+            </div>
+            <div class="justify-content-center col-md-12">
+              <mat-icon class="vertical-align-middle">
+                person
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 pb-1 pt-2 px-3 mt-1">
+          <small>Sales made</small>
+          <h3 class="m-0">
+            <span>
+              {{sales.completed.count}}
+            </span>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 align-self-stretch p-1 bg-success text-white cursor-pointer react-on-hover">
+      <h6 class="p-2 col-md-12 text-uppercase m-0 text-right">
+        in-progress
+      </h6>
+      <div class="row d-flex m-0">
+        <div class="col-md-6 p-2 text-center">
+          <div class="col-md-12">
+            <small>Rs.</small>
+            <h3>
+              {{sales.inProgress.rentals}}
+            </h3>
+          </div>
+          <div class="col-md-12">Rentals
+          </div>
+        </div>
+        <div class="col-md-6 p-2 text-center">
+          <div class="col-md-12">
+            <small>Rs.</small>
+            <h3>
+              {{sales.inProgress.consumer}}
+            </h3>
+          </div>
+          <div class="col-md-12">Consumer
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-12 container p-0">
+        <div class="col-md-12 p-1 row m-0">
+          <div class="col-md-6 p-1 text-center">
+            <div class="col-md-12 d-block mx-auto">
+              <small>Rs.</small>
+              <h3>
+                {{sales.inProgress.salesMan}}
+              </h3>
+            </div>
+            <div class="justify-content-center col-md-12">
+              <mat-icon class="vertical-align-middle">
+                airport_shuttle
+              </mat-icon>
+            </div>
+          </div>
+          <div class="col-md-6 p-1 text-center">
+            <div class="col-md-12 d-block mx-auto">
+              <small>Rs.</small>
+              <h3>
+                {{sales.inProgress.walkIn}}
+              </h3>
+            </div>
+            <div class="justify-content-center col-md-12">
+              <mat-icon class="vertical-align-middle">
+                person
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 pb-1 pt-2 px-3 mt-2 text-right">
+          <small>Sales made</small>
+          <h3 class="m-0">
+            <span>
+              {{sales.inProgress.count}}
+            </span>
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.setAttr();
   }
-  
+
   setAttr() {
     this.maxHeight = (window.innerHeight - 74).toString().concat('px');
 

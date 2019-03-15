@@ -56,3 +56,50 @@ body.backed.active {
 .bg-lgreen {
     background-color: #5ca209;
 }
+.min-h-22_5 {
+    min-height: 22.25rem;
+}
+.bg-dark-bl-transl{
+    background-color: rgba(6, 35, 49, 0.85);
+}
+.br-0 {
+    border-radius: 0px!important;
+}
+.fs-1_25 {
+    font-size: 1.25rem;
+}
+.font-weight-bold {
+    font-weight: 800!important;
+}
+.max-h-26_5 {
+    max-height: 26rem!important;
+}
+.react-on-hover {
+    transition: z-index 300ms, box-shadow 300ms, background-color 300ms;
+}
+.react-on-hover:hover {
+    z-index: 5;
+    box-shadow: 2px 2px 25px -2px #000;
+}
+.react-on-hover.react-white:hover {
+    background-color: #ffffff;
+    color: #222!important;
+    font-weight: 800;
+}
+.inv-section {
+    max-height: 22.25rem;
+    overflow-y: scroll!important;
+    transition: color 300ms;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #ccc; 
+}
+::-webkit-scrollbar-thumb {
+    background: #447507;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #5ca209; 
+}
