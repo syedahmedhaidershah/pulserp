@@ -31,7 +31,8 @@ module.exports = {
             '",',
             ',',
             ')'
-        ]
-    }
+        ],
+        getAll: 'SELECT * FROM `items`'
+    },
 }
 // { username: a, password: b}
