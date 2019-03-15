@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2019 at 02:20 PM
+-- Generation Time: Mar 15, 2019 at 10:22 PM
 -- Server version: 5.7.22-log
 -- PHP Version: 7.2.5
 
@@ -73,10 +73,12 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`item_id`, `name`, `consumer`, `rental`, `cost`, `quantity`, `empty`) VALUES
-(1, 'pepsi', 0, 1, 250, 25, 0),
-(2, 'pepsi', 0, 2, 250, 25, 0),
+(1, 'pepsi crate', 0, 1, 250, 25, 0),
+(2, 'pepsi crate', 0, 2, 250, 25, 0),
 (3, 'pepsi', 1, 0, 25, 25, 0),
-(4, 'pepsi', 1, 0, 25, 23, 2);
+(4, 'pepsi', 1, 0, 25, 23, 2),
+(5, 'Aquafina', 1, 0, 50, 25, -1),
+(6, 'Aquafina Crate', 1, 0, 50, 25, 2);
 
 -- --------------------------------------------------------
 
@@ -200,7 +202,7 @@ ALTER TABLE `information`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `packages`
