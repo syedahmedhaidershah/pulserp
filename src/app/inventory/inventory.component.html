@@ -11,13 +11,16 @@
               <input matInput placeholder="Item Name" formControlName="name" autocomplete="off" />
             </mat-form-field>
             <mat-form-field class="col-md-6 px-1">
-              <input matInput placeholder="Quantity" type="number" min=0 formControlName="quantity" autocomplete="off" />
+              <mat-select #itemTypeSelect placeholder="Item Type" (selectionChange)="changeItemType(itemTypeSelect)">
+                <mat-option *ngFor="let i of itemType" [value]="i.value">{{ i.label }}</mat-option>
+              </mat-select>
             </mat-form-field>
             <div class="row m-0 col-md-12 p-0">
               <mat-form-field class="col-md-6 px-1">
-                <mat-select #itemTypeSelect placeholder="Item Type" (selectionChange)="changeItemType(itemTypeSelect)">
-                  <mat-option *ngFor="let i of itemType" [value]="i.value">{{ i.label }}</mat-option>
-                </mat-select>
+                <input matInput placeholder="Quantity" type="number" min=0 formControlName="quantity" autocomplete="off" />
+              </mat-form-field>
+              <mat-form-field class="col-md-6 px-1">
+                <input matInput placeholder="Empty" type="number" min=0 formControlName="empty" value="0" autocomplete="off" />
               </mat-form-field>
             </div>
             <!-- <small class="mt-2 mb-1">Cost definitions</small> -->

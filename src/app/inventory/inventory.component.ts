@@ -41,6 +41,7 @@ export class InventoryComponent implements OnInit {
     this.itemForm = this.fb.group({
       name: ['', Validators.required],
       quantity: ['', Validators.required],
+      empty: ['0', Validators.required],
       cost: [''],
       rent: ['']
     });

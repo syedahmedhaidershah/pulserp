@@ -10,6 +10,6 @@ export class InventoryService {
   constructor(private http: HttpClient) { }
 
   addItemToInventory(data) {
-    return this.http.post<AnyRes>('add/inventory/item', data);
+    return this.http.post<AnyRes>('/add/inventory/item', data);
   }
 }
