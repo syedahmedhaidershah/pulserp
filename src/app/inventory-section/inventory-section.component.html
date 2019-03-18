@@ -1,7 +1,12 @@
 <div class="flex-fill p-0 bg-dark-bl-transl h-100 rounded overflow-hidden">
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <span class="text-uppercase">inventory</span>
+  <mat-toolbar class="col-md-12">
+    <mat-toolbar-row class="col-md-12">
+      <span class="text-uppercase vertical-align-middle">inventory</span>
+      <button mat-mini-fab class="vertical-align-middle float-right r-0 position-absolute" (click)="goToAddInventoryItem()">
+        <mat-icon>
+          add
+        </mat-icon>
+      </button>
     </mat-toolbar-row>
   </mat-toolbar>
   <div class="p-1 align-self-stretch row m-0 inv-section">
@@ -44,6 +49,15 @@
               </span>
             </div>
           </small>
+        </div>
+        <div class="col-md-12">
+          <span class="float-right">
+            <button #item{{i.item_id}} mat-mini-fab class="bg-secondary text-white" (click)="deleteInventoryItem(i.item_id)">
+              <mat-icon>
+                delete
+              </mat-icon>
+            </button>
+          </span>
         </div>
       </div>
     </div>

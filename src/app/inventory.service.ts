@@ -16,4 +16,8 @@ export class InventoryService {
   getAllItems() {
     return this.http.post<AnyRes>('/get/inventory/item/all', {});
   }
+
+  deleteItem(data) {
+    return this.http.post<AnyRes>('/delete/inventory/item', data);
+  }
 }

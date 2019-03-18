@@ -1,0 +1,11 @@
+<div class="justify-content-center col-md-12">
+  <div class="col-md-12 text-center mb-4 font-weight-bold">
+    {{injectedData.message}}
+  </div>
+  <div class="justify-content-center col-md-12 text-center">
+    <button *ngFor="let d of injectedData.options" mat-raised-button class="mx-3" color="accent" (click)="setRetRes(d.label)">
+      <mat-icon class="vertical-align-middle mr-1">{{d.icon}}</mat-icon>
+      <span class="vertical-align-middle">{{d.label}}</span>
+    </button>
+  </div>
+</div>

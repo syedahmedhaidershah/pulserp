@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 // tslint:disable-next-line:max-line-length
-import { MatListModule, MatCheckboxModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatSelectModule, MatGridListModule, MatRippleModule } from '@angular/material';
+import { MatListModule, MatCheckboxModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatSelectModule, MatGridListModule, MatRippleModule, MatDialogModule } from '@angular/material';
 import { MatStepperModule } from '@angular/material/stepper';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -29,6 +29,7 @@ import { InventorySectionComponent } from './inventory-section/inventory-section
 import { SalesChartComponent } from './sales-chart/sales-chart.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { SalesComponent } from './sales/sales.component';
+import { ProcessConfirmComponent } from './process-confirm/process-confirm.component';
 
 const erpRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -55,7 +56,8 @@ const erpRoutes: Routes = [
     InventorySectionComponent,
     SalesChartComponent,
     InventoryComponent,
-    SalesComponent
+    SalesComponent,
+    ProcessConfirmComponent
   ],
   imports: [
     HttpClientModule,
@@ -72,6 +74,7 @@ const erpRoutes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -86,6 +89,9 @@ const erpRoutes: Routes = [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     LoginService,
     AuthGuard
+  ],
+  entryComponents: [
+    ProcessConfirmComponent
   ],
   bootstrap: [AppComponent]
 })

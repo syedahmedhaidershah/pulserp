@@ -56,7 +56,6 @@ export class InventoryComponent implements OnInit {
     this.itemForm = this.fb.group({
       name: ['', Validators.required],
       quantity: ['', Validators.required],
-      empty: ['0', Validators.required],
       cost: [''],
       rent: ['']
     });
@@ -76,7 +75,7 @@ export class InventoryComponent implements OnInit {
 
   addItemToInventory() {
     const itemForm = this.itemForm;
-    let forwardForm = {};
+    let forwardForm: any = {};
     let prevent = false;
 
     if (itemForm.valid) {
@@ -116,10 +115,14 @@ export class InventoryComponent implements OnInit {
       } else {
         if (!(this.hasEmpty)) {
           forwardForm['empty'] = -1;
+        } else {
+          forwardForm['empty'] = forwardForm.quantity;
         }
         this.tempSub = this.inventory.addItemToInventory(forwardForm).subscribe(data => {
+          if (!(data.error)) {
+            this.itemForm.reset();
+          }
           this.matSnackBar.open(data.message, 'close');
-          this.itemForm.reset();
           this.tempSub.unsubscribe();
         });
       }

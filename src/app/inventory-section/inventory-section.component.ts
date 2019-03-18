@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../inventory.service';
 import { Subscription } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { ProcessConfirmComponent } from '../process-confirm/process-confirm.component';
 
 @Component({
   selector: 'app-inventory-section',
@@ -15,9 +17,16 @@ export class InventorySectionComponent implements OnInit {
   inventoryStats = [
   ];
 
-  constructor(private inventory: InventoryService, private matSnackBar: MatSnackBar) { }
+  delItemMessage = 'Are you sure you want to delete the Inventory item?';
+
+  // tslint:disable-next-line:max-line-length
+  constructor(private inventory: InventoryService, private matSnackBar: MatSnackBar, private router: Router, private matDialog: MatDialog) { }
 
   ngOnInit() {
+    this.retreiveInvItems();
+  }
+
+  retreiveInvItems() {
     this.tempSub = this.inventory.getAllItems().subscribe(data => {
       if (data.error) {
         this.matSnackBar.open(data.message, 'close');
@@ -38,6 +47,38 @@ export class InventorySectionComponent implements OnInit {
     return strArr
       .toString()
       .replace(/,/g, ' ');
+  }
+
+  goToAddInventoryItem() {
+    this.router.navigate(['inventory']);
+  }
+
+  deleteInventoryItem(itemId) {
+    const dialogRef = this.matDialog.open(ProcessConfirmComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {
+        message: this.delItemMessage,
+        options: [
+          { label: 'Yes', icon: 'done' },
+          { label: 'No', icon: 'clear' }
+        ]
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === 'yes') {
+        this.inventory.deleteItem({
+          item_id: itemId
+        }).subscribe(data => {
+          if (!(data.error)) {
+            this.retreiveInvItems();
+          }
+          this.matSnackBar.open(data.message, 'close');
+        });
+      }
+    });
+
   }
 
 }
