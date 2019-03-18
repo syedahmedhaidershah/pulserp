@@ -1,8 +1,13 @@
 module.exports = {
-    consumer: "number",
-    cost: "number",
-    empty: "number",
-    name: "string",
-    quantity: "number",
-    rental: "number"
+    add: {
+        consumer: "number",
+        cost: "number",
+        empty: "number",
+        name: "string",
+        quantity: "number",
+        rental: "number"
+    },
+    delete: {
+        item_id: "number"
+    }
 }

@@ -43,6 +43,18 @@ module.exports = {
             return queryStr;
         }
     },
+    mysqlQuery: (mysql, obj, query) => {
+        // MOVING  CODE TO 'sandbox/inventory'
+        let keys = [], values = [];
+        Object.keys(obj).forEach((k) => {
+            values.push(obj[k]);
+            keys.push(k);
+        });
+
+        const queryData = keys.concat(values);
+
+        return mysql.format(query, queryData);
+    },
     sortJson: (jsonObj) => {
         if (!(module.exports.isJson(jsonObj))) {
             return null;

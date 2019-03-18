@@ -18,7 +18,8 @@ module.exports = {
     errorMessages: {
         inventory: {
             defInventoryError : 'Error adding item to inventory, please contact your administrator',
-            getInventoryError: 'Error retreiving items from inventory'
+            getInventoryError: 'Error retreiving items from inventory',
+            delInventoryError: 'Error adding item to inventory, please contact your administrator'
         },
         register: {
             registerDefErr: 'Could not register you in at the moment. Please try again in a while',

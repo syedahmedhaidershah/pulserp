@@ -1,0 +1,1 @@
+const addItemQuery = generalf.generateSimpleQuery(addItemToInventoryQuery, query);

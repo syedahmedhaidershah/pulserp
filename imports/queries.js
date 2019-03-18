@@ -23,16 +23,9 @@ module.exports = {
         ]
     },
     inventory: {
-        addItem: [
-            'INSERT INTO `items` (`consumer`,`cost`,`empty`,`name`,`quantity`,`rental`) VALUES (',
-            ',',
-            ',',
-            ',"',
-            '",',
-            ',',
-            ')'
-        ],
-        getAll: 'SELECT * FROM `items`'
+        addItem: "INSERT INTO `items` (??,??,??,??,??,??) VALUES (?,?,?,?,?,?)",
+        getAll: 'SELECT * FROM `items` ORDER BY `item_id` DESC',
+        deleteItem: 'DELETE FROM `items` WHERE `item_id`=?'
     },
 }
 // { username: a, password: b}
