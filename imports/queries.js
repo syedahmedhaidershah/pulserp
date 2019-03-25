@@ -47,10 +47,11 @@ module.exports = {
     },
     consumerSales: {
         addConsumerSales: "INSERT INTO consumer_sales (??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        updateBalance: "UPDATE consumer_sales SET balance=? WHERE invoice_id = ?",
+        updateBalance: "UPDATE consumer_sales SET balance=balance - ?, deposit=? WHERE invoice_id = ?",
         getInProgressSales: "SELECT * FROM consumer_sales WHERE balance > 0",
         getCompletedSales: "SELECT * FROM consumer_sales WHERE balance = 0",
-        getAllSales: "SELECT * FROM consumer_sales JOIN items ON consumer_sales.item_id = items.item_id ORDER BY invoice_id DESC LIMIT 50"
+        getAllSales: "SELECT * FROM consumer_sales JOIN items ON consumer_sales.item_id = items.item_id ORDER BY invoice_id DESC LIMIT 50",
+        getAllSalesInProgress: "SELECT * FROM consumer_sales JOIN items ON consumer_sales.item_id = items.item_id WHERE balance > 0 ORDER BY invoice_id DESC LIMIT 50"
     }
 }
 // { username: a, password: b}

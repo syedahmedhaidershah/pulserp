@@ -5,8 +5,9 @@ const generalf = require('../../imports/functions/general');
 const add = require('../../imports/queries').consumerSales.addConsumerSales;
 const getAll = require('../../imports/queries').consumerSales.getAllSales;
 const getInProgressSales = require('../../imports/queries').consumerSales.getInProgressSales;
+const getAllInProgressSales = require('../../imports/queries').consumerSales.getAllSalesInProgress;
 const updateInvStock = require('../../imports/queries').inventory.updateItemQuantityMinus;
-const updateBalance = require('../../imports/queries').inventory.updateBalance;
+const updateBalance = require('../../imports/queries').consumerSales.updateBalance;
 
 module.exports = function (router, mysqlObject) {
     // router.post('/add/salesman', (req, res) => {
@@ -82,8 +83,16 @@ module.exports = function (router, mysqlObject) {
             });
     });
 
+    // //////////////////////////////////|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     router.post('/inprogress/payout', (req, res) => {
-        const useQuery = mysql.format(updateBalance, req.body);
+        const newTotal = req.body.total;
+        delete req.body.total;
+
+        const values = Object.values(req.body);
+        values[2] = values[1];
+        values[1] = newTotal;
+        
+        const useQuery = mysqlObject.format(updateBalance, values);
 
         mysqlObject.query(useQuery, (error,r, f) => {
             if (error) {
@@ -93,5 +102,18 @@ module.exports = function (router, mysqlObject) {
                 res.send(defs.setRetRes('def', 'You have successfully updated the sale'));
             }
         });
+    });
+
+    router.post('/get/sales/inprogress/all', (req, res) => {
+        mysqlObject.query(getAllInProgressSales, (error, r, f) => {
+            if (error) {
+                console.log(error);
+                res.send(defs.errRes);
+            } else {
+                res.send(defs.setRetRes('def', r));
+            }
+        });
     })
+
+    
 }
