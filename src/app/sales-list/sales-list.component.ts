@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesService } from '../sales.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-sales-list',
@@ -9,14 +10,21 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 })
 export class SalesListComponent implements OnInit {
 
+  fieldEnabled = false;
   salesList = [];
 
   constructor(
     private salesServ: SalesService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private messages: MessagesService
   ) { }
 
   ngOnInit() {
+    this.messages.currentMessage.subscribe(res => {
+      if (res === 'invUpdated') {
+        this.retreiveSales();
+      }
+    });
     this.retreiveSales();
   }
 
@@ -25,7 +33,10 @@ export class SalesListComponent implements OnInit {
       if (res.error) {
         this.snackBar.open(res.message, 'close');
       } else {
-        this.salesList = res.message;
+        this.salesList = res.message.map(x => {
+          x['fieldEnabled'] = false;
+          return x;
+        });
       }
     });
   }
@@ -36,6 +47,10 @@ export class SalesListComponent implements OnInit {
 
   payOut(id, dep) {
     // const dialogRef = this.mat
+  }
+
+  close(id) {
+    
   }
 
 }

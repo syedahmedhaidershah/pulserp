@@ -52,28 +52,31 @@ export class SalesSectionComponent implements OnInit {
     this.salesServ.retreiveInProgressSales().subscribe(res => {
       const sales = res.message;
       this.sales.inProgress.count = sales.length;
-      this.sales.inProgress.consumer = sales.map(x => {
+      const tempArr = sales.map(x => {
         return x.deposit;
-      }).reduce((total, num) => {
-        return total + num;
       });
-      this.sales.inProgress.walkIn = sales.map(x => {
+      tempArr.forEach(v => {
+        this.sales.inProgress.consumer += v;
+      });
+      const tempArr2 = sales.map(x => {
         if (x.customer_id === 4) {
           return x.deposit;
         } else {
           return 0;
         }
-      }).reduce((total, num) => {
-        return total + num;
       });
-      this.sales.inProgress.salesMan = sales.map(x => {
+      tempArr2.forEach(v => {
+        this.sales.inProgress.walkIn += v;
+      });
+      const tempArr3 = sales.map(x => {
         if (x.customer_id !== 4) {
           return x.deposit;
         } else {
           return 0;
         }
-      }).reduce((total, num) => {
-        return total + num;
+      });
+      tempArr3.forEach(v => {
+        this.sales.inProgress.salesMan += v;
       });
     });
   }

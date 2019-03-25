@@ -47,6 +47,8 @@ import { AddSalesmanComponent } from './add-salesman/add-salesman.component';
 import { AddSalesmanFormComponent } from './add-salesman-form/add-salesman-form.component';
 import { SchemesComponent } from './schemes/schemes.component';
 import { AddSchemeComponent } from './add-scheme/add-scheme.component';
+import { PaymentPendingSalesComponent } from './payment-pending-sales/payment-pending-sales.component';
+import { CompletePayoutComponent } from './complete-payout/complete-payout.component';
 
 const erpRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -90,7 +92,9 @@ const erpRoutes: Routes = [
     AddSalesmanComponent,
     AddSalesmanFormComponent,
     SchemesComponent,
-    AddSchemeComponent
+    AddSchemeComponent,
+    PaymentPendingSalesComponent,
+    CompletePayoutComponent
   ],
   imports: [
     HttpClientModule,
@@ -133,7 +137,8 @@ const erpRoutes: Routes = [
     ReStockItemComponent,
     MakeASaleDialogComponent,
     AddSalesmanComponent,
-    AddSchemeComponent
+    AddSchemeComponent,
+    CompletePayoutComponent
   ],
   bootstrap: [AppComponent]
 })

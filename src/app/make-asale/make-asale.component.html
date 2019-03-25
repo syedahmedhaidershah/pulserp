@@ -16,11 +16,14 @@
     </mat-form-field>
     <mat-form-field class="col-md-6 px-1">
       <input id="itemQuantity" matInput placeholder="Select a Quantity" type="number" min=0 formControlName="quantity"
-        autocomplete="off" />
+        autocomplete="off"/>
     </mat-form-field>
   </div>
-  <div *ngIf="selectedItem.name.length > 0" class="col-md-12 px-1 py-0 m-0">
-    <small class="col-md-12 text-right float-right font-weight-bold">
+  <div *ngIf="selectedItem.name.length > 0" class="col-md-12 px-1 py-0 m-0 row">
+    <small class="col-md-6 font-weight-bold">
+      Cost: (PKR {{selectedQuantity * selectedItem.selling}})
+    </small>
+    <small class="col-md-6 text-right font-weight-bold">
       In Stock: {{selectedItem.quantity}}
     </small>
   </div>
@@ -31,7 +34,7 @@
       </small>
     </div> -->
     <mat-form-field class="col-md-6 px-1">
-      <input id="itemQuantity" matInput placeholder="Deposit Amount" type="number" min=0 formControlName="deposit"
+      <input matInput placeholder="Amount Paid" type="number" min=0 formControlName="deposit"
         autocomplete="off" />
     </mat-form-field>
     <mat-form-field class="col-md-6 px-1">

@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <span>COMPLETE SALE</span>
+</mat-toolbar>
+<div class="col-md-12 p-3 bg-white">
+  <mat-form-field class="d-block mx-auto">
+    <input id="payment" matInput placeholder="Payment Received" min=0 max={{injectedData.balance}} type="number" />
+  </mat-form-field>
+  <button class="d-block mx-auto px-4" mat-raised-button color="accent" (click)="tryPayingOut()">
+    <mat-icon class="mr-1 vertical-align-middle">
+      done
+    </mat-icon>
+    <span class="vertical-align-middle">
+      Done
+    </span>
+  </button>
+</div>

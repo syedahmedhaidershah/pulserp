@@ -23,7 +23,11 @@ export class SalesService {
     return this.http.post<AnyRes>('/get/sales/inprogress', {});
   }
 
+  retreiveInProgressComplete() {
+    return this.http.post<AnyRes>('/get/sales/inprogress/all', {});
+  }
+
   updateBalance(data) {
-    return this.http.post<AnyRes>('/update/sales/balance', data);
+    return this.http.post<AnyRes>('/inprogress/payout', data);
   }
 }

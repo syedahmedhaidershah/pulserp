@@ -26,6 +26,7 @@ export class MakeASaleComponent implements OnInit {
 
   @ViewChild('salesmanName') salesmanName: MatInput;
 
+
   saleForm: FormGroup;
   sellButtonState = true;
 
@@ -39,6 +40,7 @@ export class MakeASaleComponent implements OnInit {
   selectedItem: any = {
     name: ''
   };
+  selectedQuantity = 0;
 
   salesmen: any = [];
   filteredSalesmen: Observable<Object[]>;
@@ -104,6 +106,20 @@ export class MakeASaleComponent implements OnInit {
   }
 
   setListeners() {
+    const iqt = <HTMLInputElement>document.getElementById('itemQuantity');
+
+    iqt.addEventListener('input', ($e) => {
+      try {
+        if (iqt.value === '') {
+          iqt.value = '0';
+          this.selectedQuantity = 0;
+        } else {
+          this.selectedQuantity = parseInt(iqt.value,10);
+        }
+        this.genTotal();
+      } catch (exc) { console.log(exc); }
+    });
+
     this.itemAuto._emitSelectEvent = (e) => {
       const itemId = this.funct.reverseStr(this.funct.reverseStr(e.value).split(')')[1].split('(')[0]);
       this.selectedItem = this.invItems.filter(i => {
@@ -268,8 +284,6 @@ export class MakeASaleComponent implements OnInit {
       }
       addDis.value = '';
 
-      console.log(this.addDis);
-
       // tslint:disable-next-line:max-line-length
       let balance = this.selectedItem.selling * saleForm.controls['quantity'].value - saleForm.controls['deposit'].value - this.addDis;
 
@@ -294,6 +308,9 @@ export class MakeASaleComponent implements OnInit {
       };
       this.addedProducts.push(pushItem);
       this.saleForm.reset();
+      this.selectedItem = {
+        name: ''
+      };
     } else {
       this.matSnackBar.open('Please input all of the fields to make a sale', 'close');
     }
@@ -345,6 +362,37 @@ export class MakeASaleComponent implements OnInit {
       }
     });
     this.appliedSchemes = [];
+  }
+
+  genTotal() {
+    const saleForm = this.saleForm;
+    const addDis = <HTMLInputElement>(document.getElementById('additionalDiscount'));
+    const val: any = addDis.value;
+    if (val.length === 0) {
+      this.addDis = 0;
+    } else {
+      this.addDis = parseInt(val, 10);
+    }
+    addDis.value = '';
+
+    const cash = this.addedProducts.map(p => p.deposit * p.quantity);
+
+    let totalSale = 0;
+
+    cash.forEach(v => {
+      totalSale += v;
+    });
+
+    this.appliedSchemes.forEach(s => {
+      totalSale -= s.deduction;
+    });
+
+    let temp = 0;
+    if (this.selectedItem.hasOwnProperty('quantity') > 0) {
+      temp += this.selectedItem.quantity * this.selectedItem.selling;
+    }
+
+    this.totalBill = temp + totalSale;
   }
 
 }

@@ -1,0 +1,18 @@
+<div class="col-md-12 py-2">
+  <mat-list class="col-md-12 p-1">
+    <div *ngIf="inProgress.length === 0">
+      No sales awaiting payment
+    </div>
+    <mat-list-item matRipple *ngFor="let i of inProgress" class="cursor-pointer" (click)="proceedToPayout(i)">
+      <mat-icon class="mr-1">
+        keyboard_arrow_up
+      </mat-icon>
+      <span class="vertical-align-middle ml-1 mr-1">
+        {{i.name}}
+      </span>
+      <small class="vertical-align-middle ml-2 float-right r-1r position-absolute">
+        PKR {{i.balance}}
+      </small>
+    </mat-list-item>
+  </mat-list>
+</div>
