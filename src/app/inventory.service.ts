@@ -17,7 +17,27 @@ export class InventoryService {
     return this.http.post<AnyRes>('/get/inventory/item/all', {});
   }
 
+  getAllConsumerItems() {
+    return this.http.post<AnyRes>('/get/inventory/items/consumer', {});
+  }
+
+  getAllRentalItems() {
+    return this.http.post<AnyRes>('/get/inventory/items/rental', {});
+  }
+
+  getItem(data) {
+    return this.http.post<AnyRes>('/get/inventory/item', data);
+  }
+
   deleteItem(data) {
     return this.http.post<AnyRes>('/delete/inventory/item', data);
+  }
+
+  editInvItem(data) {
+    return this.http.post<AnyRes>('/update/inventory/item', data);
+  }
+
+  updateItemQuantity(data) {
+    return this.http.post<AnyRes>('/update/inventory/item/quantity', data);
   }
 }

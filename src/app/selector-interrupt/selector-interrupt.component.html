@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="text-uppercase px-5">
+  <mat-toolbar-row>
+    {{injectedData.heading}}
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="col-md-12 p-1">
+  <mat-list class="p-0">
+    <div class="col-md-12 p-1 cursor-pointer hoverableItem" *ngFor="let o of injectedData.options">
+      <mat-list-item class="hoverableItem" (click)="setRetRes(o.label.toLowerCase())">
+        {{o.label}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+</div>

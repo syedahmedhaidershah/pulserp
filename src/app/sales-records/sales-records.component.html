@@ -1,0 +1,51 @@
+<div class="col-md-12 container py-2">
+  <div class="row m-0">
+    <div class="col-md-3 p-0">
+      <div class="col-md-12 p-1">
+        <div class="col-md-12 p-0 bg-white rounded overflow-hidden">
+          <mat-toolbar color="primary" class="col-md-12">
+            <span class="text-uppercase vertical-align-middle">Make a Sale</span>
+          </mat-toolbar>
+          <app-make-asale></app-make-asale>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 px-0 pb-0 pt-1 d-inline-block">
+      <app-sales-chart></app-sales-chart>
+      <div class="col-md-12 p-0 mt-1 rounded">
+        <mat-toolbar color="primary">
+            <span class="text-uppercase">salesmen management</span>
+            <button mat-mini-fab (click)="addSalesman()" color="accent" class="r-1r position-absolute float-right">
+              <mat-icon class="mat-18">
+                add
+              </mat-icon>
+            </button>
+        </mat-toolbar>
+        <div class="col-md-12 bg-white p-1">
+          <app-salesman></app-salesman>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 p-0">
+      <div class="col-md-12 p-1">
+        <div class="col-md-12 p-0 bg-white rounded overflow-hidden">
+          <mat-toolbar color="primary" class="col-md-12">
+            <span class="text-uppercase vertical-align-middle">sales</span>
+          </mat-toolbar>
+          <app-sales-list></app-sales-list>
+        </div>
+      </div>
+      <div class="col-md-12 pt-0 pb-1 px-1 rounded">
+        <mat-toolbar color="primary">
+          <span class="text-uppercase">schemes</span>
+          <button mat-mini-fab (click)="addScheme()" color="accent" class="float-right r-1r position-absolute">
+              <mat-icon>
+                add
+              </mat-icon>
+          </button>
+        </mat-toolbar>
+        <app-schemes></app-schemes>
+      </div>
+    </div>
+  </div>
+</div>

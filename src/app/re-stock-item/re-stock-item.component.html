@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span class="text-uppercase">restock item</span>
+</mat-toolbar>
+<div class="col-md-12 py-1">
+  <form [formGroup]="restockForm" class="col-md-12 pt-2 pb-0">
+    <mat-form-field>
+      <input #itemQuant id="itemQuant" matInput placeholder="Quantity" min=0 type="number" formControlName="quantity" />
+    </mat-form-field>
+    <div *ngIf="item" class="text-right col-md-12 py-1 px-0 m-0">
+      <small class="col-md-12 p-0 m-0">
+        In Stock: {{item.quantity}}
+      </small>
+    </div>
+  </form>
+  <button mat-raised-button (click)="reStock()" color="accent" class="mt-1 mb-3 mx-auto d-block">
+    <mat-icon class="vertical-align-middle mr-1">
+      keyboard_arrow_up
+    </mat-icon>
+    <span>
+      Re-stock
+    </span>
+  </button>
+</div>

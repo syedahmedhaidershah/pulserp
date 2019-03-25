@@ -1,11 +1,16 @@
-<div class="flex-fill bg-lgreen h-100 rounded overflow-hidden">
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <span class="text-uppercase">sales</span>
+<div class="flex-fill bg-lgreen rounded overflow-hidden">
+  <mat-toolbar color="primary" class="col-md-12">
+    <mat-toolbar-row class="col-md-12">
+      <span class="text-uppercase vertical-align-middle">sales</span>
+      <!-- <button mat-mini-fab class="vertical-align-middle float-right r-0 position-absolute" (click)="tryMakingASale()">
+        <mat-icon>
+          add
+        </mat-icon>
+      </button> -->
     </mat-toolbar-row>
   </mat-toolbar>
   <div class="p-0 align-self-stretch row m-0">
-    <div class="col-md-6 align-self-stretch p-1 text-white cursor-pointer react-on-hover">
+    <div class="col-md-6 align-self-stretch p-1 text-white cursor-pointer react-on-hover" (click)="navigateToSales()">
       <h6 class="p-2 col-md-12 text-uppercase m-0">
         completed
       </h6>
@@ -71,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 align-self-stretch p-1 bg-success text-white cursor-pointer react-on-hover">
+    <div class="col-md-6 align-self-stretch p-1 bg-success text-white cursor-pointer react-on-hover" (click)="navigateToSales()">
       <h6 class="p-2 col-md-12 text-uppercase m-0 text-right">
         in-progress
       </h6>

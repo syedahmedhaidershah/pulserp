@@ -8,10 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 // tslint:disable-next-line:max-line-length
-import { MatListModule, MatCheckboxModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatSelectModule, MatGridListModule, MatRippleModule, MatDialogModule } from '@angular/material';
+import { MatListModule, MatCheckboxModule, MatSidenavModule, MatSnackBarModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatSelectModule, MatGridListModule, MatRippleModule, MatDialogModule, MatDividerModule, MatAutocompleteModule } from '@angular/material';
 import { MatStepperModule } from '@angular/material/stepper';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +31,22 @@ import { SalesChartComponent } from './sales-chart/sales-chart.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { SalesComponent } from './sales/sales.component';
 import { ProcessConfirmComponent } from './process-confirm/process-confirm.component';
+import { InventoryItemsInteractiveComponent } from './inventory-items-interactive/inventory-items-interactive.component';
+import { EditInvItemComponent } from './edit-inv-item/edit-inv-item.component';
+import { MessagesService } from './messages.service';
+import { SalesRecordsComponent } from './sales-records/sales-records.component';
+import { MakeASaleComponent } from './make-asale/make-asale.component';
+import { MakeASaleDialogComponent } from './make-a-sale-dialog/make-a-sale-dialog.component';
+import { SalesListComponent } from './sales-list/sales-list.component';
+import { SelectorInterruptComponent } from './selector-interrupt/selector-interrupt.component';
+import { AddInvItemComponent } from './add-inv-item/add-inv-item.component';
+import { RentOutFormComponent } from './rent-out-form/rent-out-form.component';
+import { ReStockItemComponent } from './re-stock-item/re-stock-item.component';
+import { SalesmanComponent } from './salesman/salesman.component';
+import { AddSalesmanComponent } from './add-salesman/add-salesman.component';
+import { AddSalesmanFormComponent } from './add-salesman-form/add-salesman-form.component';
+import { SchemesComponent } from './schemes/schemes.component';
+import { AddSchemeComponent } from './add-scheme/add-scheme.component';
 
 const erpRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,6 +55,7 @@ const erpRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'inventory', component: InventoryComponent },
+  { path: 'sales', component: SalesRecordsComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -57,7 +75,22 @@ const erpRoutes: Routes = [
     SalesChartComponent,
     InventoryComponent,
     SalesComponent,
-    ProcessConfirmComponent
+    ProcessConfirmComponent,
+    InventoryItemsInteractiveComponent,
+    EditInvItemComponent,
+    SalesRecordsComponent,
+    MakeASaleComponent,
+    MakeASaleDialogComponent,
+    SalesListComponent,
+    SelectorInterruptComponent,
+    AddInvItemComponent,
+    RentOutFormComponent,
+    ReStockItemComponent,
+    SalesmanComponent,
+    AddSalesmanComponent,
+    AddSalesmanFormComponent,
+    SchemesComponent,
+    AddSchemeComponent
   ],
   imports: [
     HttpClientModule,
@@ -75,11 +108,13 @@ const erpRoutes: Routes = [
     MatFormFieldModule,
     MatCheckboxModule,
     MatDialogModule,
-    FormsModule,
-    ReactiveFormsModule,
+    MatDividerModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       erpRoutes,
       { enableTracing: false } // <-- debugging purposes only
@@ -88,10 +123,17 @@ const erpRoutes: Routes = [
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     LoginService,
-    AuthGuard
+    AuthGuard,
+    MessagesService
   ],
   entryComponents: [
-    ProcessConfirmComponent
+    ProcessConfirmComponent,
+    EditInvItemComponent,
+    SelectorInterruptComponent,
+    ReStockItemComponent,
+    MakeASaleDialogComponent,
+    AddSalesmanComponent,
+    AddSchemeComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,24 @@
+<div class="col-md-12 py-1 px-2 bg-white">
+  <div *ngIf="schemes.length === 0" class="px-2 py-1">
+    No Schemes are available at the moment
+  </div>
+  <div class="p-0 vertical-scroll" >
+    <div *ngFor="let s of schemes">
+      <div class="col-md-12 px-3 py-1 card rounded shadow">
+        <div class="col-md-12 p-0">
+          {{s.scheme_name}}
+        </div>
+        <div class="col-md-12 p-0">
+          <small>
+            <b>PKR {{s.deduction}}</b>
+          </small>
+        </div>
+        <div class="p-1 col-md-12">
+          <span class="float-right text-danger cursor-pointer" (click)="deleteScheme(s.discount_id)">
+            DELETE
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

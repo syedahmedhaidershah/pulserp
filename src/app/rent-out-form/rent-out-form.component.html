@@ -1,0 +1,17 @@
+<form [formGroup]="rentOutForm" class="col-md-12 py-2">
+  <div class="row col-md-12 m-0 p-0">
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput #rentalItemName placeholder="Select an Item" [matAutocomplete]="rentAuto" formControlName="name"
+        autofocus />
+      <mat-autocomplete #rentAuto="matAutocomplete">
+        <mat-option *ngFor="let i of filteredItems | async" [value]="i.name.concat(' (' + i.item_id+')')">
+          {{ i.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="col-md-6 px-1">
+      <input id="rentItemQuantity" matInput placeholder="Select a Quantity" [matAutocomplete]="auto" type="number" min=0
+        formControlName="quantity" />
+    </mat-form-field>
+  </div>
+</form>

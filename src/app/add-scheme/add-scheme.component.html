@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <span>ADD A SCHEME</span>
+</mat-toolbar>
+<form [formGroup]="schemeForm" class="px-3 py-2 col-md-10 d-block mx-auto">
+  <div class="row m-0">
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput placeholder="Scheme Name" formControlName="scheme_name">
+    </mat-form-field>
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput placeholder="Discount provided (PKR)" formControlName="deduction" min=0 type="number">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button (click)="addDiscount()" color="accent" class="d-block mx-auto mb-3">
+    <mat-icon class="mr-1 vertical-align-middle">
+      done
+    </mat-icon>
+    <span class="vertical-align-middle">
+      Add Scheme
+    </span>
+  </button>
+</form>

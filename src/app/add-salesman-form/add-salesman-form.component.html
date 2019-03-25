@@ -1,0 +1,28 @@
+<form [formGroup]="addSalesmanForm" class="col-md-11 pb-2 pt-4 d-block mx-auto">
+  <div class="col-md-12 row m-0">
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput placeholder="Name" formControlName="name" autofocus />
+    </mat-form-field>
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput id="nicInp" placeholder="NIC#" formControlName="nic" type="number" min=0 max=9999999999999 autofocus (keypress)="checkNIC()" />
+    </mat-form-field>
+  </div>
+  <div class="col-md-12 row m-0">
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput placeholder="Empty" formControlName="empty" type="number" min=0 autofocus />
+    </mat-form-field>
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput placeholder="Contact No" formControlName="contact_no" type="number" min=0 max=999999999999999 autofocus />
+    </mat-form-field>
+  </div>
+  <div class="col-md-12 py-2 mt-1">
+    <button mat-raised-button (click)="addSalesman()" class="d-block mx-auto" color="accent">
+      <mat-icon class="vertical-align-middle mr-1">
+        done
+      </mat-icon>
+      <span class="vertical-align-middle">
+        Save
+      </span>
+    </button>
+  </div>
+</form>

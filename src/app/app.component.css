@@ -16,9 +16,9 @@
     display: none!important;
     height: calc( 100% - 64px);
     top: 64px;
-    left: 25%;
-    background-color: rgba(0, 0, 0, 0.425);
-    z-index: 5;
+    left: 0%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 4;
     transition: opacity 1500ms;
 }
 .sidenav-container.active {

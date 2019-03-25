@@ -1,0 +1,47 @@
+<div class="col-md-12 p-0 bg-white rounded overflow-hidden">
+  <mat-toolbar color="primary">
+    <span class="text-uppercase">Add Items</span>
+  </mat-toolbar>
+  <form [formGroup]="itemForm" class="col-md-12 px-4 py-2">
+    <div class="row m-0 col-md-12 p-0">
+      <mat-form-field class="col-md-6 px-1">
+        <input matInput placeholder="Item Name" formControlName="name" autocomplete="off" autofocus />
+      </mat-form-field>
+      <mat-form-field class="col-md-6 px-1">
+        <mat-select #itemTypeSelect placeholder="Item Type" (selectionChange)="changeItemType(itemTypeSelect)">
+          <mat-option *ngFor="let i of itemType" [value]="i.value">{{ i.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="row m-0 col-md-12 p-0">
+        <mat-form-field class="col-md-6 px-1">
+          <input matInput placeholder="Quantity" type="number" min=0 formControlName="quantity" autocomplete="off" />
+        </mat-form-field>
+      </div>
+      <div id="empty-container" class="row m-0 col-md-12 p-0">
+        <mat-checkbox #emptyCheck color="primary">Has 'Empty' Account</mat-checkbox>
+      </div>
+      <!-- <small class="mt-2 mb-1">Cost definitions</small> -->
+      <div class="row m-0 col-md-12 p-0">
+        <mat-form-field *ngIf="selectedItemType === 'c'" class="col-md-6 px-1">
+          <input matInput placeholder="Cost (PKR)" type="number" min=0 formControlName="cost" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field *ngIf="selectedItemType === 'c'" class="col-md-6 px-1">
+          <input matInput placeholder="Selling Price (PKR)" type="number" min=0 formControlName="selling" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field *ngIf="selectedItemType === 'r'" class="col-md-6 px-1">
+          <input matInput placeholder="Rent (PKR)" type="number" min=0 formControlName="rent" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field *ngIf="selectedItemType === 'r'" class="col-md-6 px-1">
+          <mat-select #rentDurationSelect placeholder="Rent Duration" (selectionChange)="changeRentDuration(rentDurationSelect)">
+            <mat-option *ngFor="let i of rentType" [value]="i.value">{{ i.label }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div class="mt-1 col-md-12 p-2">
+    <button mat-raised-button class="col-md-12 text-center py-1 px-2" color="accent" (click)="addItemToInventory()">
+      Add to Inventory
+    </button>
+  </div>
+</div>

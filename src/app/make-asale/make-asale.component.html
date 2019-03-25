@@ -1,0 +1,150 @@
+<form [formGroup]="saleForm" class="col-md-12 p-1">
+  <div class="row col-md-12 m-0 p-0">
+    <!-- <div class="col-md-12 px-1 py-0 m-0">
+      <small class="font-weight-bold">
+        * Item ID is being shown in brackets
+      </small>
+    </div> -->
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput #itemName placeholder="Select an Item" [matAutocomplete]="auto" formControlName="name" (click)="itemInpClicked($event)"
+        autofocus />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let i of filteredItems | async" [value]="i.name.concat(' (' + i.item_id+')')">
+          {{ i.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="col-md-6 px-1">
+      <input id="itemQuantity" matInput placeholder="Select a Quantity" type="number" min=0 formControlName="quantity"
+        autocomplete="off" />
+    </mat-form-field>
+  </div>
+  <div *ngIf="selectedItem.name.length > 0" class="col-md-12 px-1 py-0 m-0">
+    <small class="col-md-12 text-right float-right font-weight-bold">
+      In Stock: {{selectedItem.quantity}}
+    </small>
+  </div>
+  <div class="row col-md-12 m-0 p-0">
+    <!-- <div class="col-md-12 px-1 py-0 m-0">
+      <small class="font-weight-bold">
+        * Salesman's ID is being shown in brackets
+      </small>
+    </div> -->
+    <mat-form-field class="col-md-6 px-1">
+      <input id="itemQuantity" matInput placeholder="Deposit Amount" type="number" min=0 formControlName="deposit"
+        autocomplete="off" />
+    </mat-form-field>
+    <mat-form-field class="col-md-6 px-1">
+      <input matInput #salesmanName placeholder="Select a Client / Salesman" [matAutocomplete]="salesmanAuto" formControlName="salesman" />
+      <mat-autocomplete #salesmanAuto="matAutocomplete">
+        <mat-option *ngFor="let s of filteredSalesmen | async" [value]="s.name.concat(' (' + s.customer_id+')')">
+          {{ s.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="col-md-12 px-1 pt-1 row m-0">
+    <div class="col-md-6 text-left">
+      <small class="font-weight-bold">
+        Available Schemes
+      </small>
+    </div>
+    <div class="col-md-6 text-right">
+      <small class="font-weight-bold">
+        Applied
+      </small>
+    </div>
+  </div>
+  <div class="col-md-12 row p-1 m-0 h-9r position-relative rounded border">
+    <div class="position-relative col-md-6 p-1 m-0 vertical-scroll h-100">
+      <div *ngIf="availableSchemes.length === 0" class="text-center">
+        No schemes are available at the moment
+      </div>
+      <mat-list class="col-md-12 p-0">
+        <mat-list-item *ngFor="let s of availableSchemes" class="p-0 hoverableItem mltc-p0_5 card rounded cursor-pointer"
+          matRipple (click)="addSchemeToSale(s.discount_id)" color="accent">
+          <span>
+            {{s.scheme_name}}
+          </span>
+          <button mat-mini-fab class="float-right r-0_5r position-absolute vertical-align-middle bg-transparent shadow-none">
+            <mat-icon class="mat-18">
+              keyboard_arrow_right
+            </mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="position-relative col-md-6 p-1 m-0 vertical-scroll h-100">
+      <div *ngIf="appliedSchemes.length === 0" class="text-center">
+        No schemes have been applied yet
+      </div>
+      <mat-list class="col-md-12 p-0">
+        <mat-list-item *ngFor="let s of appliedSchemes" class="p-0 hoverableItem mltc-p0_5 card rounded cursor-pointer"
+          matRipple (click)="remSchemeFromSale(s.discount_id)">
+          <span>
+            {{s.scheme_name}}
+          </span>
+          <button mat-mini-fab class="float-right r-0_5r position-absolute vertical-align-middle bg-transparent shadow-none">
+            <mat-icon class="mat-18">
+              clear
+            </mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+  <div class="col-md-12 row m-0 p-0 rounded border mt-1">
+    <div class="col-md-6 p-0 mt-2">
+      <button class="px-5 col-md-11 py-1 d-block mx-auto mt-1 mb-2" mat-raised-button color="accent" [disabled]="sellButtonDisabled"
+        (click)="addItemToList()">
+        Add
+      </button>
+      <button class="px-5 col-md-11 py-1 d-block mx-auto mt-1 mb-2" mat-raised-button color="primary" [disabled]="sellButtonDisabled"
+        (click)="makeASale()">
+        Sell
+      </button>
+      <mat-form-field class="col-md-11 d-block mx-auto">
+        <input id="additionalDiscount" matInput placeholder="Addition Discount" min=0 type="number" autocomplete="off" [disabled]="sellButtonDisabled" >
+      </mat-form-field>
+      <div class="col-md-12 row m-0 p-0">
+        <div class="col-md-12 text-center bg-info text-white">
+          <div>
+            <small>{{totalBill - addDis}}</small>
+          </div>
+          <div>
+            <small>TOTAL</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6  p-0">
+      <div class="col-md-12 h-9r p-1 vertical-scroll">
+        <div *ngIf="addedProducts.length === 0">
+          No products in List
+        </div>
+        <div class="p-1 col-md-12" *ngFor="let p of addedProducts shadow">
+          <div class="col-md-12 p-1 border rounded">
+            <div class="m-0 p-0 d-block">
+              <span *ngIf="addedProducts.length > 0">
+                {{getText(p)}}
+              </span>
+            </div>
+            <div class="m-0 p-0 d-block">
+              <span class="ml-2 font-weight-bold">
+                {{p.quantity}}
+              </span>
+            </div>
+            <div class="p-0 col-md-12">
+              <span matRipple class="text-uppercase text-white cursor-pointer bg-danger px-2 text-center rounded py-1 col-md-11 mx-auto d-block"
+                (click)="removeFromList(p.item_id)">
+                <small>
+                  remove
+                </small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

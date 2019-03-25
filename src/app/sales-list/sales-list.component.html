@@ -1,0 +1,28 @@
+<div class="col-md-12 p-1 h-14r vertical-scroll">
+  <div *ngIf="salesList.length === 0" class="py-2">
+    No sales have been made as of yet
+  </div>
+  <div *ngFor="let s of salesList" class="col-md-12 p-0 m-0 card rounded cursor-pointer" #sale{{s.ivoice_id}} (click)="payOut(s.ivoice_id, s.deposit)">
+    <div class="row col-md-12 m-0">
+      <div class="col-md-6">
+        {{s.name}}
+      </div>
+      <div class="col-md-6 pr-1">
+        <div class="col-md-12 text-right small pr-0 font-weight-bold">
+          Balance: {{s.balance}}
+        </div>
+        <div class="col-md-12 text-right small pr-0 font-weight-bold">
+          Deposit: {{s.deposit}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 py-2">
+      <mat-form-field>
+        <input matInput max="s.deposit" placeholder="" />
+      </mat-form-field>
+    </div>
+    <small class="d-block col-md-12 m-0 text-right">
+      {{Date(s.date_time)}}
+    </small>
+  </div>
+</div>

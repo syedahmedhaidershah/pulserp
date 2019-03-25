@@ -1,0 +1,13 @@
+<div class="col-md-12 p-0">
+    <div *ngIf="salesmenArr.length === 0">
+        Retreiving salesman list
+    </div>
+    <mat-list class="p-0 m-0">
+        <div *ngFor="let s of salesmenArr" class="col-md-12 p-0 m-0">
+            <mat-list-item class="py-1 px-2 hoverableItem">
+                {{s.name}}
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-list>
+</div>

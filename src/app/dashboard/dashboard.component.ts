@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material';
+import { MakeASaleDialogComponent } from '../make-a-sale-dialog/make-a-sale-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,7 @@ export class DashboardComponent implements OnInit {
   dateFirst = null;
   dateToday = null;
 
-  constructor() { }
+  constructor(private matDialog: MatDialog) { }
 
   ngOnInit() {
     this.setAttr();
@@ -27,4 +29,15 @@ export class DashboardComponent implements OnInit {
     this.dateFirst = useDate.toDateString();
   }
 
+  tryASell(str: String) {
+    if (str === 's') {
+      const dialogRef = this.matDialog.open(MakeASaleDialogComponent, {
+        height: 'auto',
+        width: '40%',
+        panelClass: 'md-p-0'
+      });
+    } else if (str === 'r') {
+
+    }
+  }
 }

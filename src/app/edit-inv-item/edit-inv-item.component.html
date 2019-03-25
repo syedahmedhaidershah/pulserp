@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="col-md-12">
+    <span>
+      Edit Inventory Item
+    </span>
+    <button mat-mini-fab (click)="closeRef()" color="accent" class="position-absolute vertical-align-middle float-right r-1r">
+        <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="col-md-12 p-2">
+  <div *ngIf="editButInactive" class="col-md-12 py-1 text-center mb-3">
+    Loading Item information, please wait ...
+  </div>
+  <form [formGroup]="editItemForm" class="col-md-12 px-4 py-2">
+    <div class="row m-0 col-md-12 p-0">
+      <mat-form-field class="col-md-6 px-1">
+        <input matInput placeholder="Item Name" formControlName="name" autocomplete="off" autofocus />
+      </mat-form-field>
+      <mat-form-field class="col-md-6 px-1">
+        <mat-select #itemTypeSelect placeholder="Item Type" (selectionChange)="changeItemType(itemTypeSelect)">
+          <mat-option *ngFor="let i of itemType" [value]="i.value">{{ i.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="row m-0 col-md-12 p-0">
+        <mat-form-field class="col-md-6 px-1">
+          <input matInput placeholder="Quantity" type="number" min=0 formControlName="quantity" autocomplete="off" />
+        </mat-form-field>
+      </div>
+      <div class="row m-0 col-md-12 p-0">
+        <mat-checkbox #emptyCheck2 color="primary">Has 'Empty' Account</mat-checkbox>
+      </div>
+      <!-- <small class="mt-2 mb-1">Cost definitions</small> -->
+      <div class="row m-0 col-md-12 p-0">
+        <mat-form-field *ngIf="selectedItemType === 'c'" class="col-md-6 px-1">
+          <input matInput placeholder="Cost (PKR)" type="number" min=0 formControlName="cost" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field *ngIf="selectedItemType === 'c'" class="col-md-6 px-1">
+          <input matInput placeholder="Selling Price (PKR)" type="number" min=0 formControlName="selling" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field *ngIf="selectedItemType === 'r'" class="col-md-6 px-1">
+          <input matInput placeholder="Rent (PKR)" type="number" min=0 formControlName="rent" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field *ngIf="selectedItemType === 'r'" class="col-md-6 px-1">
+          <mat-select #rentDurationSelect placeholder="Rent Duration" (selectionChange)="changeRentDuration(rentDurationSelect)">
+            <mat-option *ngFor="let i of rentType" [value]="i.value">{{ i.label }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button class="d-block mx-auto px-5 py-1 mt-2" color="primary" (click)="editInvItem()" [disabled]="editButInactive">
+      <mat-icon class="mr-2">
+        edit
+      </mat-icon>
+      <span>
+        Edit
+      </span>
+    </button>
+  </form>
+</div>

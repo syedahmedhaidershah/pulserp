@@ -106,3 +106,43 @@ body.backed.active {
 .cdk-overlay-dark-backdrop {
     background: rgba(0,0,0,0.6);
 }
+.max-h-50p {
+    max-height: 50%;
+}
+body > app-root > div.col-md-12.p-1 > app-inventory > div > div > div.col-md-3.p-1.max-h-50p > div > div > app-inventory-items-interactive > div > div.text-white {
+    color:#222!important;
+}
+.border-bottom-dark {
+    border-bottom: 1px solid #888888;
+}
+.md-p-0 mat-dialog-container {
+    padding: 0px!important;
+}
+.r-0 {
+    right:0px
+}
+.r-1r {
+    right: 1rem;
+}
+.hoverableItem:hover {
+    background-color: #607d8b;
+    color: #ffffff!important;
+}
+.bg-white-transl {
+    background-color: rgba(255,255,255,0.95);
+}
+.h-9r {
+    height: 9rem!important;
+}
+.mltc-p0_5 .mat-list-item-content {
+    padding:0.5rem!important;
+}
+.r-0_5r {
+    right: 0.5rem!important;
+}
+.h-9r {
+    height: 9rem!important;
+}
+.h-14r {
+    height: 14rem!important;
+}

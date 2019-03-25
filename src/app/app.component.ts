@@ -40,10 +40,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     // },
     { name: 'Dashboard', path: 'dashboard', icon: 'dashboard' },
     { name: 'Inventory Management', path: 'inventory', icon: 'work' },
-    { name: 'Settings', path: 'settings', icon: 'settings' }
+    { name: 'Sales\' & Customers', path: 'sales', icon: 'attach_money' }
+    // ,
+    // { name: 'Settings', path: 'settings', icon: 'settings' }
   ];
 
-  constructor(private router: Router, private funct: FunctionsService) { }
+  constructor(private router: Router, private funct: FunctionsService, private matSnackBar: MatSnackBar) { }
 
   getComponentName(path: string) {
     const route = path.split('/')[1];
@@ -77,6 +79,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     //     this.componentRoute = this.getComponentName(event.url);
     //   });
     this.setElements();
+    this.setListeners();
+  }
+
+  setListeners() {
+    // document.body.addEventListener('click', (e) => {
+    //   this.matSnackBar.dismiss();
+    // });
   }
 
   ngAfterViewInit() {
