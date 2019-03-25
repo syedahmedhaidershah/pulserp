@@ -45,13 +45,17 @@ module.exports = {
     },
     mysqlQuery: (mysql, obj, query) => {
         // MOVING  CODE TO 'sandbox/inventory'
-        let keys = [], values = [];
-        Object.keys(obj).forEach((k) => {
-            values.push(obj[k]);
-            keys.push(k);
-        });
 
-        const queryData = keys.concat(values);
+        const queryData = Object.keys(obj).concat(Object.values(obj));
+
+        return mysql.format(query, queryData);
+    },
+    mysqlQueryAlt: (mysql, obj, query) => {
+        const queryData = [];
+
+        Object.keys(obj).forEach((k) => {
+            queryData.push(k, obj[k]);
+        });
 
         return mysql.format(query, queryData);
     },

@@ -2,6 +2,7 @@ module.exports = {
     add: {
         consumer: "number",
         cost: "number",
+        selling: "number",
         empty: "number",
         name: "string",
         quantity: "number",
