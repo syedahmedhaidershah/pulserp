@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2019 at 10:22 PM
+-- Generation Time: Mar 25, 2019 at 09:01 AM
 -- Server version: 5.7.22-log
 -- PHP Version: 7.2.5
 
@@ -37,6 +37,70 @@ CREATE TABLE `companies` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `consumer_sales`
+--
+
+CREATE TABLE `consumer_sales` (
+  `invoice_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `deposit` int(11) NOT NULL,
+  `balance` int(11) NOT NULL,
+  `discounts` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `consumer_sales`
+--
+
+INSERT INTO `consumer_sales` (`invoice_id`, `customer_id`, `item_id`, `quantity`, `deposit`, `balance`, `discounts`, `date_time`) VALUES
+(12, 3, 22, 11, 25, 492, '4_', '2019-03-25 12:04:00'),
+(13, 4, 22, 21, 2, 1065, '4_', '2019-03-25 12:24:49'),
+(14, 4, 24, 50, 0, 2500, '', '2019-03-25 12:46:43'),
+(15, 4, 23, 50, 100, 1150, '', '2019-03-25 12:46:43'),
+(16, 4, 24, 23, 0, 1150, '', '2019-03-25 12:49:36'),
+(17, 3, 24, 100, 0, 5000, '', '2019-03-25 12:53:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `customer_id` int(11) NOT NULL,
+  `name` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nic` bigint(14) NOT NULL,
+  `empty` int(11) NOT NULL,
+  `contact_no` bigint(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `name`, `nic`, `empty`, `contact_no`) VALUES
+(3, 'Ahmed Haider', 4210117961449, 0, 3003573769),
+(4, 'Walk-in Customer', 0, 0, 0),
+(5, 'murtaza', 4210140392621, 0, 3343254171);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount`
+--
+
+CREATE TABLE `discount` (
+  `discount_id` int(11) NOT NULL,
+  `scheme_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deduction` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `information`
 --
 
@@ -64,6 +128,7 @@ CREATE TABLE `items` (
   `consumer` tinyint(1) NOT NULL DEFAULT '0',
   `rental` tinyint(1) NOT NULL DEFAULT '0',
   `cost` int(11) NOT NULL,
+  `selling` int(11) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
   `empty` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -72,13 +137,10 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`item_id`, `name`, `consumer`, `rental`, `cost`, `quantity`, `empty`) VALUES
-(1, 'pepsi crate', 0, 1, 250, 25, 0),
-(2, 'pepsi crate', 0, 2, 250, 25, 0),
-(3, 'pepsi', 1, 0, 25, 25, 0),
-(4, 'pepsi', 1, 0, 25, 23, 2),
-(5, 'Aquafina', 1, 0, 50, 25, -1),
-(6, 'Aquafina Crate', 1, 0, 50, 25, 2);
+INSERT INTO `items` (`item_id`, `name`, `consumer`, `rental`, `cost`, `selling`, `quantity`, `empty`) VALUES
+(23, 'pepsi 250ml', 1, 0, 20, 25, 200, 250),
+(24, 'pepsi 500ml', 1, 0, 45, 50, 327, -1),
+(25, 'slice 500ml', 1, 0, 45, 50, 100, -1);
 
 -- --------------------------------------------------------
 
@@ -103,25 +165,29 @@ INSERT INTO `packages` (`package_id`, `name`, `color`, `price`, `description`, `
 (1, 'Inventora', '552387', 5.99, '{\"data\":[{\"cloud\":false},{\"inventory\":true},{\"sales\":true}]}', 1),
 (2, 'Inventora Plus', '008800', 39.99, '{\"data\":[{\"cloud\":true},{\"inventory\":true},{\"sales\":true}]}', 0),
 (3, 'Accountant PRO', '0089cf', 71.99, '{\"data\":[{\"cloud\":false},{\"acc\":true},{\"management\":true},{\"storage\":false}]}', 0),
+(4, 'ERP Plus', 'd6960b', 129.99, '{\"data\":[{\"cloud\":true},{\"acc\":true},{\"management\":true},{\"storage\":true}]}', 0),
+(1, 'Inventora', '552387', 5.99, '{\"data\":[{\"cloud\":false},{\"inventory\":true},{\"sales\":true}]}', 1),
+(2, 'Inventora Plus', '008800', 39.99, '{\"data\":[{\"cloud\":true},{\"inventory\":true},{\"sales\":true}]}', 0),
+(3, 'Accountant PRO', '0089cf', 71.99, '{\"data\":[{\"cloud\":false},{\"acc\":true},{\"management\":true},{\"storage\":false}]}', 0),
 (4, 'ERP Plus', 'd6960b', 129.99, '{\"data\":[{\"cloud\":true},{\"acc\":true},{\"management\":true},{\"storage\":true}]}', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transactions`
+-- Table structure for table `rental_sales`
 --
 
-CREATE TABLE `transactions` (
-  `transaction_id` int(11) NOT NULL,
-  `company_id` int(11) NOT NULL,
-  `particulars` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `method` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `credit` double(11,2) NOT NULL,
-  `debit` double(11,2) NOT NULL,
-  `balance` double(11,2) NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `closed` tinyint(1) NOT NULL
+CREATE TABLE `rental_sales` (
+  `invoice_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `deposit` int(11) NOT NULL,
+  `total_paid` int(11) NOT NULL,
+  `last_paid` int(11) NOT NULL,
+  `return_date` datetime NOT NULL,
+  `returned` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -159,6 +225,24 @@ ALTER TABLE `companies`
   ADD PRIMARY KEY (`company_id`);
 
 --
+-- Indexes for table `consumer_sales`
+--
+ALTER TABLE `consumer_sales`
+  ADD PRIMARY KEY (`invoice_id`,`customer_id`,`item_id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `discount`
+--
+ALTER TABLE `discount`
+  ADD PRIMARY KEY (`discount_id`);
+
+--
 -- Indexes for table `information`
 --
 ALTER TABLE `information`
@@ -171,60 +255,38 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`item_id`);
 
 --
--- Indexes for table `packages`
+-- Indexes for table `rental_sales`
 --
-ALTER TABLE `packages`
-  ADD PRIMARY KEY (`package_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`uid`);
+ALTER TABLE `rental_sales`
+  ADD PRIMARY KEY (`invoice_id`,`customer_id`,`item_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `companies`
+-- AUTO_INCREMENT for table `consumer_sales`
 --
-ALTER TABLE `companies`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `consumer_sales`
+  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `information`
+-- AUTO_INCREMENT for table `customers`
 --
-ALTER TABLE `information`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+ALTER TABLE `customers`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `discount`
+--
+ALTER TABLE `discount`
+  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `packages`
---
-ALTER TABLE `packages`
-  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `information`
---
-ALTER TABLE `information`
-  ADD CONSTRAINT `fk_uid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
